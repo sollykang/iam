@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KANG · Web Publisher Portfolio</title>
+<meta name="description" content="사용자 경험을 생각하며 웹 표준과 접근성을 지키는 웹퍼블리셔 KANGSOLLY의 포트폴리오. HTML, CSS, JavaScript, fullpage, Swiper를 활용한 반응형 웹사이트 작업물을 소개합니다.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="KANG SOLLY· Web Publisher Portfolio">
+<meta property="og:description" content="사용자의 편리함을 먼저 생각하고 유지보수를 생각하며 코드를 작업하고, 웹 표준과 접근성을 지키는 퍼블리셔 KANGSOLLY의 포트폴리오입니다.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KANG SOLLY · Web Publisher Portfolio">
+<meta name="twitter:description" content="사용자의 편리함을 먼저 생각하고 유지보수를 생각하며 코드를 작업하고, 웹 표준과 접근성을 지키는 퍼블리셔 KANGSOLLY의 포트폴리오입니다.">
+<meta name="twitter:image" content="images/og-image.png">
+
+<!-- 파비콘 -->
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Pretendard: 본문/제목 공용 폰트 (한글+영문 혼용 가독성이 좋아 Space Grotesk/Inter 대신 적용) -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="site-header">
+  <button type="button" class="logo btn-logo-nav" onclick="fullpage_api.moveTo(1); commonUI.headerToggle(false);">KANG<span class="dot">.</span></button>
+  <nav class="gnb" aria-label="주 메뉴">
+    <button type="button" class="btn-gnb-nav gnb-1" data-anchor="about" onclick="fullpage_api.moveTo(2); commonUI.headerToggle();">ABOUT</button>
+    <button type="button" class="btn-gnb-nav gnb-2" data-anchor="skills" onclick="fullpage_api.moveTo(3); commonUI.headerToggle();">SKILLS</button>
+    <button type="button" class="btn-gnb-nav gnb-3" data-anchor="projects" onclick="fullpage_api.moveTo(4); commonUI.headerToggle();">PROJECTS</button>
+    <button type="button" class="btn-gnb-nav gnb-4" data-anchor="process" onclick="fullpage_api.moveTo(5); commonUI.headerToggle();">PROCESS</button>
+    <button type="button" class="btn-gnb-nav gnb-5" data-anchor="contact" onclick="fullpage_api.moveTo(6); commonUI.headerToggle();">CONTACT</button>
+  </nav>
+  <!-- e//header > nav -->
+  <div style="display:flex; align-items:center; gap:14px;">
+    <button type="button" class="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="commonUI.headerToggle();"><span></span></button>
+  </div>
+</header>
+<!-- e//header-->
+
+<!-- Side navigation -->
+<nav class="side-nav" aria-label="섹션 이동">
+  <ul class=" ">
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="main" aria-current="true" onclick="fullpage_api.moveTo(1);"><span class="side-nav-num">01</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">HOME</span>
+    </li>
+    <!-- e//side-nav-item -->
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="about" onclick="fullpage_api.moveTo(2);"><span class="side-nav-num">02</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">ABOUT</span>
+    </li>
+    <!-- e//side-nav-item -->
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="skills" onclick="fullpage_api.moveTo(3);"><span class="side-nav-num">03</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">SKILLS</span>
+    </li>
+    <!-- e//side-nav-item -->
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="projects" onclick="fullpage_api.moveTo(4);"><span class="side-nav-num">04</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">PROJECTS</span>
+    </li>
+    <!-- e//side-nav-item -->
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="process" onclick="fullpage_api.moveTo(5);"><span class="side-nav-num">05</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">PROCESS</span>
+    </li>
+    <!-- e//side-nav-item -->
+    <li class="side-nav-item">
+      <button type="button" class="side-nav-link btn-side-nav" data-anchor="contact" onclick="fullpage_api.moveTo(6);"><span class="side-nav-num">06</span><span class="side-nav-dot"></span></button>
+      <span class="side-nav-label">CONTACT</span>
+    </li>
+    <!-- e//side-nav-item -->
+  </ul>
+  <!-- e//nav.side-nav > side-nav-list -->
+</nav>
+<!-- e//nav.side-nav-->
+
+<main>
+
+  <!-- 01 HOME -->
+  <section id="main" aria-label="홈">
+    <canvas id="particles-home" class="section-particles" aria-hidden="true"></canvas>
+    <div class="main-grid" aria-hidden="true"></div>
+    <div class="main-spotlight" aria-hidden="true"></div>
+    <div class="main-typing-code" aria-hidden="true"><span id="mainTypingText"></span><span class="main-typing-cursor">|</span></div>
+    <div class="section-inner main">
+      <div class="content-box">
+        <span class="h2-desc">hello, i&#39;m kang</span>
+        <h1>WEB<br>PUBLISHER<span class="accent-dot">.</span></h1>
+        <p class="main-sub">사용자의 편리함을 먼저 생각하고 <br />유지보수를 생각하며 코드를 작업하고,<br>웹 표준과 접근성을 지키는 퍼블리셔입니다.</p>
+        <div class="main-cta">
+          <button type="button" class="btn" onclick="fullpage_api.moveTo(4);">
+            VIEW MY WORKS
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <span class="main-cta-note">HTML · CSS · JS · GSAP · Swiper</span>
+        </div>
+      </div>
+
+      <div class="circle-wrap content-box" aria-hidden="true">
+        <div class="circle"></div>
+        <div class="circle circle-inner"></div>
+        <div class="circle-trail"></div>
+        <div class="circle-core">
+          <span class="strong">KANG</span>
+          <span>WEB PUBLISHER</span>
+        </div>
+        <span class="circle-tag" data-angle="-90"><i></i>HTML5</span>
+        <span class="circle-tag" data-angle="-30"><i></i>CSS3</span>
+        <span class="circle-tag" data-angle="30"><i></i>JavaScript</span>
+        <span class="circle-tag" data-angle="90"><i></i>GSAP</span>
+        <span class="circle-tag" data-angle="150"><i></i>Swiper</span>
+        <span class="circle-tag" data-angle="210"><i></i>Fullpage.js</span>
+      </div>
+    </div>
+
+    <div class="scroll-down" aria-hidden="true">
+      <span class="scroll-down-mouse"></span>
+      SCROLL DOWN
+    </div>
+  </section>
+
+  <!-- 02 ABOUT -->
+  <section id="about" class="section-alt" aria-label="소개">
+    <div class="section-inner about">
+      <div class="about-media content-box">
+        <div class="code-window" aria-hidden="true">
+          <div class="code-window-bar">
+            <div class="code-window-dots">
+              <span class="code-window-dot code-window-dot-red"></span>
+              <span class="code-window-dot code-window-dot-yellow"></span>
+              <span class="code-window-dot code-window-dot-green"></span>
+            </div>
+            <span class="code-window-filename">profile.js</span>
+          </div>
+          <div class="code-window-body">
+            <ol class="code-lines">
+              <li><span class="code-comment">// who is KangSolly?</span></li>
+              <li>&nbsp;</li>
+              <li><span class="code-keyword">const</span> sollyKang = {</li>
+              <li>&nbsp;&nbsp;name: <span class="code-string">'KangSolly'</span>,</li>
+              <li>&nbsp;&nbsp;role: <span class="code-string">'Web Publisher'</span>,</li>
+              <li>&nbsp;&nbsp;location: <span class="code-string">'Seoul, KR'</span>,</li>
+              <li>&nbsp;&nbsp;focus: [<span class="code-string">'Web Standards'</span>, <span class="code-string">'Accessibility'</span>],</li>
+              <li>&nbsp;&nbsp;experience: <span class="code-string">'10+ years'</span>,</li>
+              <li>};</li>
+              <li>&nbsp;</li>
+              <li><span class="code-keyword">export default</span> sollyKang;</li>
+              <li>&nbsp;</li>
+              <li>&nbsp;</li>
+              <li>&nbsp;</li>
+              <li>&nbsp;</li>
+              <li>&nbsp;</li>
+              <li>&nbsp;</li>
+            </ol>
+          </div>
+        </div>
+        <div class="about-badge"><span class="strong">10+</span><span>YEARS</span></div>
+      </div>
+
+      <div class="content-box">
+        <span class="h2-desc">about me</span>
+        <h2>Designing with code.<br>Bringing ideas to life.</h2>
+        <p class="about-body">
+          웹 표준과 사용자 편리함을 생각하면서 웹사이트를 만들어요.<br>
+          깔끔한 마크업과 유지보수하기 쉬운 코드를 좋아하고,<br>
+          새로운 기술 배우는 것도 거부감이 없습니다.
+        </p>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-icon" aria-hidden="true">◷</span>
+            <span class="strong">10+</span>
+            <span>YEARS EXPERIENCE</span>
+          </div>
+          <div class="stat">
+            <span class="stat-icon" aria-hidden="true">▣</span>
+            <span class="strong">30+</span>
+            <span>PROJECTS COMPLETED</span>
+          </div>
+          <div class="stat">
+            <span class="stat-icon" aria-hidden="true">♥</span>
+            <span class="strong">100%</span>
+            <span>PASSION DEDICATION</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SKILLS -->
+  <section id="skills" aria-label="기술 스택">
+    <div class="skills-bg-text" aria-hidden="true">Skills &amp; Expertise</div>
+    <div class="section-inner">
+      <div class="skills-head content-box">
+        <div>
+          <span class="h2-desc">my skills</span>
+          <h2>Skills &amp; Expertise</h2>
+          <p class="skills-head-copy">시맨틱 마크업부터 인터랙션까지, 자연스럽게 이어지는 프론트엔드를 만들어요. <br />웹 표준은 지키면서도 GSAP와 Swiper 같은 라이브러리로 프로젝트의 완성도를 높이는 데 집중해요.</p>
+          <div class="skills-head-meta">
+            <span><span class="strong">11</span>&nbsp;core skills</span>
+            <span>last updated&nbsp;<span class="strong">2026</span></span>
+            <span>always&nbsp;<span class="strong">learning</span></span>
+          </div>
+        </div>
+        <div class="swiper-nav-group">
+          <button class="swiper-nav-btn" id="skillsPrev" aria-label="이전 스킬 보기">←</button>
+          <button class="swiper-nav-btn" id="skillsNext" aria-label="다음 스킬 보기">→</button>
+        </div>
+      </div>
+
+      <div class="swiper skills-swiper content-box">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://developer.mozilla.org/ko/docs/Web/HTML" target="_blank" rel="noopener noreferrer">&lt;html5/&gt;</a></span>
+              <div class="skill-card-icon" style="background:#E44D26;">HTML5</div>
+              <h3>HTML5</h3>
+              <div class="skill-card-bar"><span style="width:95%;"></span></div>
+              <div class="skill-card-pct">95%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://developer.mozilla.org/ko/docs/Web/CSS" target="_blank" rel="noopener noreferrer">.css3</a></span>
+              <div class="skill-card-icon" style="background:#1572B6;">CSS3</div>
+              <h3>CSS3</h3>
+              <div class="skill-card-bar"><span style="width:90%;"></span></div>
+              <div class="skill-card-pct">90%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/ko" target="_blank" rel="noopener noreferrer">W3C</a></span>
+              <div class="skill-card-icon" style="background:#005a9c;">W3C</div>
+              <h3>웹접근성</h3>
+              <div class="skill-card-bar"><span style="width:90%;"></span></div>
+              <div class="skill-card-pct">90%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">const js</a></span>
+              <div class="skill-card-icon" style="background:#E8B600;">JS</div>
+              <h3>JavaScript</h3>
+              <div class="skill-card-bar"><span style="width:70%;"></span></div>
+              <div class="skill-card-pct">70%</div>
+            </div>
+          </div>
+
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://jquery.com/" target="_blank" rel="noopener noreferrer">JQuery();</a></span>
+              <div class="skill-card-icon" style="background:#d18f4f;">JQuery</div>
+              <h3>JQuery</h3>
+              <div class="skill-card-bar"><span style="width:70%;"></span></div>
+              <div class="skill-card-pct">70%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://swiperjs.com/" target="_blank" rel="noopener noreferrer">new Swiper()</a></span>
+              <div class="skill-card-icon" style="background:#3A86FF;">Swiper</div>
+              <h3>Swiper</h3>
+              <div class="skill-card-bar"><span style="width:70%;"></span></div>
+              <div class="skill-card-pct">70%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://alvarotrigo.com/fullPage/" target="_blank" rel="noopener noreferrer">fullpage#</a></span>
+              <div class="skill-card-icon" style="background:#8C5A22;">Fullpage</div>
+              <h3>Fullpage.js</h3>
+              <div class="skill-card-bar"><span style="width:80%;"></span></div>
+              <div class="skill-card-pct">80%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="#" style="pointer-events: none;">Cross Browsing</a></span>
+              <div class="skill-card-icon" style="background:#96b647;width:130px;">Cross Browsing</div>
+              <h3>Cross Browsing</h3>
+              <div class="skill-card-bar"><span style="width:90%;"></span></div>
+              <div class="skill-card-pct">90%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://www.figma.com/ko-kr/" target="_blank" rel="noopener noreferrer">Figma</a></span>
+              <div class="skill-card-icon" style="background:#874fff;">Figma</div>
+              <h3>Figma</h3>
+              <div class="skill-card-bar"><span style="width:70%;"></span></div>
+              <div class="skill-card-pct">70%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://www.adobe.com/kr/" target="_blank" rel="noopener noreferrer">PhotoShop</a></span>
+              <div class="skill-card-icon" style="background:#eb1000;width:110px;">PhotoShop</div>
+              <h3>Adobe PhotoShop</h3>
+              <div class="skill-card-bar"><span style="width:70%;"></span></div>
+              <div class="skill-card-pct">70%</div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="skill-card">
+              <span class="skill-card-tag"><a href="https://gsap.com/" target="_blank" rel="noopener noreferrer">gsap.to()</a></span>
+              <div class="skill-card-icon" style="background:#0AE448;">GSAP</div>
+              <h3>GSAP</h3>
+              <div class="skill-card-bar"><span style="width:50%;"></span></div>
+              <div class="skill-card-pct">50%</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="tools-strip content-box">
+        <span class="tools-strip-label">TOOLS &amp; WORKFLOW</span>
+        <div class="tools-strip-list">
+          <span class="tool-chip"><i></i>VS Code</span>
+          <span class="tool-chip"><i></i>Git &amp; GitHub</span>
+          <span class="tool-chip"><i></i>Figma</span>
+          <span class="tool-chip"><i></i>Chrome DevTools</span>
+          <span class="tool-chip"><i></i>PhotoShop</span>
+          <span class="tool-chip"><i></i>Notion</span>
+          <span class="tool-chip"><i></i>Slack</span>
+          <span class="tool-chip"><i></i>Jira</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PROJECTS -->
+  <section id="projects" class="section-alt" aria-label="프로젝트">
+    <div class="projects-bg-gradient"></div>
+    <div class="section-inner">
+      <div class="projects-head content-box">
+        <div>
+          <span class="h2-desc">recented project</span>
+          <h2>Recented Project</h2>
+        </div>
+        <div class="projects-head-actions">
+          <div class="swiper-nav-group">
+            <button class="swiper-nav-btn" id="projectsPrev" aria-label="이전 프로젝트 보기">←</button>
+            <button class="swiper-nav-btn" id="projectsNext" aria-label="다음 프로젝트 보기">→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-grid content-box">
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <a class="project-card-media" href="https://www.residentevil-survivalunit.com/" target="_blank" rel="noopener noreferrer" aria-label="BIOHAZAD Suvival Unit 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-01"><img src="images/project1-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project1-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project1-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-04"><img src="images/project1-4.jpg" alt=""></div>
+              </div>
+            </div>
+          </a>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev0" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext0" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/BIOHAZAD Suvival Unit</span>
+            <h3>BIOHAZAD Suvival Unit</h3>
+            <p class="project-card-desc">게임 BIOHAZAD Suvival Unit 사이트<br />REACT를 이용하여 제작한 반응형 웹 사이트</p>
+            <div class="tag-row">
+             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <a class="project-card-media" href="https://romgoldenage.com/" target="_blank" aria-label="ROM: Golden Age 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-05"><img src="images/project2-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-06"><img src="images/project2-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-07"><img src="images/project2-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-08"><img src="images/project2-4.jpg" alt=""></div>
+              </div>
+            </div>
+          </a>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev1" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext1" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/ROM: Golden Age</span>
+            <h3>ROM: Golden Age</h3>
+            <p class="project-card-desc">게임 ROM: Golden Age 사이트<br />REACT를 이용하여 제작한 반응형 웹 사이트</p>
+            <div class="tag-row">
+             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Swiper.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <a class="project-card-media" rel="noopener noreferrer" aria-label="ROM: Remamber Of Majesty Episode IV">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-09"><img src="images/project3-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-10"><img src="images/project3-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-11"><img src="images/project3-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-12"><img src="images/project3-4.jpg" alt=""></div>
+              </div>
+            </div>
+          </a>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev2" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext2" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/ROM: Remamber Of Majesty Episode IV</span>
+            <h3>ROM: Remamber Of Majesty Episode IV</h3>
+            <p class="project-card-desc">게임 ROM: Remamber Of Majesty Episode IV 사이트<br />GSAP와 Fullpage.js를 활용한 반응형 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="FORTNITE 사전예약 프로모션 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-13"><img src="images/project4-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-14"><img src="images/project4-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-15"><img src="images/project4-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-16"><img src="images/project4-4.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev3" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext3" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/FORTNITE 사전예약 프로모션</span>
+            <h3>FORTNITE 사전예약 프로모션</h3>
+            <p class="project-card-desc">FORTNITE 사전예약 프로모션 페이지<br />fullpage를 이용하여 만든 반응형 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode III 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-17"><img src="images/project5-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-18"><img src="images/project5-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-19"><img src="images/project5-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-20"><img src="images/project5-4.jpg" alt=""></div>
+              </div>
+            </div>
+          </a>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev4" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext4" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/ROM: Remamber Of Majesty Episode III</span>
+            <h3>ROM: Remamber Of Majesty Episode III</h3>
+            <p class="project-card-desc">ROM: Remamber Of Majesty Episode III 이벤트 페이지 <br />fullpage를 이용하여 만든 반응형 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="삼국 블래이드 키우기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-21"><img src="images/project6-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-22"><img src="images/project6-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-23"><img src="images/project6-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-24"><img src="images/project6-4.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev5" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext5" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/삼국 블래이드 키우기</span>
+            <h3>삼국 블래이드 키우기</h3>
+            <p class="project-card-desc">핀테크 대시보드 UI<br>데이터 시각화와 다크모드 지원</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode II 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-25"><img src="images/project7-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-26"><img src="images/project7-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-27"><img src="images/project7-3.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-28"><img src="images/project7-4.jpg" alt=""></div>
+              </div>
+            </div>
+          </a>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev6" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext6" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/ROM: Remamber Of Majesty Episode II</span>
+            <h3>ROM: Remamber Of Majesty Episode II</h3>
+            <p class="project-card-desc">카페 예약 사이트<br>예약 폼과 실시간 유효성 검사</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">Swiper.js</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="별이되어라2 시즌 2 프로모션 페이지 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-29"><img src="images/project8-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-30"><img src="images/project8-2.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev7" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext7" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/별이되어라2 시즌 2 프로모션 페이지 바로가기</span>
+            <h3>별이되어라2 시즌 2 프로모션 페이지 바로가기</h3>
+            <p class="project-card-desc">별이되어라2 시즌 2 프로모션 페이지<br />적응형 레이아웃으로 제작한 이벤트 페이지</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">적응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="별이되어라 2 프로모션 페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-31"><img src="images/project9-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"></div>
+              <div class="swiper-slide project-card-media-04"></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev8" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext8" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/별이되어라 2 프로모션 페이지</span>
+            <h3>별이되어라 2 프로모션 페이지</h3>
+            <p class="project-card-desc">별이되어라 2 프로모션 페이지<br />적응형 레이아웃으로 제작한 이벤트 페이지</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">적응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="ROM: Remamber Of Majesty 홈페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-29"><img src="images/project10-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-30"><img src="images/project10-2.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev9" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext9" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/</span>
+            <h3>ROM: Remamber Of Majesty</h3>
+            <p class="project-card-desc">게임 ROM: Remamber Of Majesty 홈페이지<br />GSAP와 Fullpage.js를 활용한 반응형 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="SUDDEN ATTACK Promotion 전국 서든자랑 바로가기">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-05"><img src="images/project11-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-06"><img src="images/project11-2.jpg" alt=""></div>
+              <!-- <div class="swiper-slide project-card-media-01"><img src="images/project11-3.jpg" alt=""></div> -->
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev10" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext10" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/SUDDEN ATTACK Promotion 전국 서든자랑</span>
+            <h3>SUDDEN ATTACK Promotion 전국 서든자랑</h3>
+            <p class="project-card-desc">SUDDEN ATTACK 전국 서든자랑 프로모션 페이지<br />Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="EGON Promotion 프로모션 사이트">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-06"><img src="images/project12-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-01"><img src="images/project12-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project12-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev11" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext11" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/EGON Promotion</span>
+            <h3>EGON Promotion</h3>
+            <p class="project-card-desc">EGON 게임 프로모션 페이지<br />Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="Tapas Promotion Weekly Event 사이트">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-01"><img src="images/project13-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project13-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project13-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev12" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext12" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/Tapas Promotion Weekly Event</span>
+            <h3>Tapas Promotion Weekly Event</h3>
+            <p class="project-card-desc">Tapas 주간 이벤트 프로모션 페이지<br />모바일까지 고려한 반응형 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="Undecember Promotion 사이트">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project14-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project14-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-04"><img src="images/project14-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev13" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext13" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/Undecember Promotion</span>
+            <h3>Undecember Promotion</h3>
+            <p class="project-card-desc">Undecember 게임 프로모션 페이지<br />Swiper와 Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="KINGS RAID Promotion X:The Final">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project15-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project15-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-04"><img src="images/project15-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev14" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext14" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/KINGS RAID Promotion X:The Final</span>
+            <h3>KINGS RAID Promotion X:The Final</h3>
+            <p class="project-card-desc">KINGS RAID X 파이널 프로모션 페이지<br />Swiper와 Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="GUARDIAN CHRONICLE 사전예약 프로모션 페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project16-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project16-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-04"><img src="images/project16-2.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev15" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext15" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/GUARDIAN CHRONICLE</span>
+            <h3>GUARDIAN CHRONICLE 사전예약 프로모션</h3>
+            <p class="project-card-desc">GUARDIAN CHRONICLE 사전예약 프로모션 페이지<br />Swiper와 Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="ROYAL CROWN 사전예약 프로모션 사이트">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project17-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-03"><img src="images/project17-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-04"><img src="images/project17-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev16" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext16" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/ROYAL CROWN 사전예약 프로모션</span>
+            <h3>ROYAL CROWN 사전예약 프로모션</h3>
+            <p class="project-card-desc">ROYAL CROWN 사전예약 프로모션 페이지<br />Swiper와 Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="데미안 전기 사전예약 프로모션 페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-03"></div>
+              <div class="swiper-slide project-card-media-04"></div>
+              <div class="swiper-slide project-card-media-05"></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev17" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext17" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/데미안 전기 사전예약 프로모션 페이지</span>
+            <h3>데미안 전기 사전예약 프로모션 페이지</h3>
+            <p class="project-card-desc">데미안 전기 사전예약 프로모션 페이지<br />Swiper와 Fullpage.js를 활용한 모바일 대응 웹 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="MINI Build Your Drive 홈페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project18-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project18-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project18-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev18" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext18" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/MINI Build Your Drive</span>
+            <h3>MINI Build Your Drive</h3>
+            <p class="project-card-desc">MINI Build Your Drive 캠페인 페이지<br />반응형으로 제작한 브랜드 프로모션 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">반응형</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card-media-wrap">
+          <div class="project-card-media" role="img" aria-label="BMW Build Your Driv 홈페이지">
+            <div class="swiper project-media-swiper">
+              <div class="swiper-wrapper">
+              <div class="swiper-slide project-card-media-02"><img src="images/project19-1.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project19-2.jpg" alt=""></div>
+              <div class="swiper-slide project-card-media-02"><img src="images/project19-3.jpg" alt=""></div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="project-media-nav">
+            <button type="button" class="project-media-prev" id="projectMediaPrev19" aria-label="이전 이미지">←</button>
+            <button type="button" class="project-media-next" id="projectMediaNext19" aria-label="다음 이미지">→</button>
+          </div>
+          </div>
+          <div class="project-card-body">
+            <span class="project-card-path">/BMW Build Your Drive</span>
+            <h3>BMW Build Your Drive</h3>
+            <p class="project-card-desc">BMW Build Your Drive 캠페인 페이지<br />반응형으로 제작한 브랜드 프로모션 사이트</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">반응형</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 PROCESS -->
+  <section id="process" aria-label="작업 프로세스">
+    <canvas id="particles-process" class="section-particles section-particles-solid" aria-hidden="true"></canvas>
+    <div class="section-inner">
+      <div class="process-head content-box">
+        <span class="h2-desc">my process</span>
+        <h2>Publishing Process</h2>
+        <p class="process-head-copy">기획부터 배포까지, 단계마다 결과물을 확실하게 정하고 넘어가요. <br />보여지는것에만 치중한 퍼블리싱을 작업하는게 아니라,<br />협업 과정에서 무엇을 주고받는지 정리하고 분석하여 계획적으로 작업을 하려고 해요.</p>
+        <div class="process-head-meta">
+          <span><span class="strong">5</span>&nbsp;stages</span>
+          <!-- <span>concept to&nbsp;<span class="strong">launch</span></span>
+          <span>avg.&nbsp;<span class="strong">3–4 weeks</span></span> -->
+        </div>
+      </div>
+
+      <div class="process-track" tabindex="0" role="group" aria-label="퍼블리싱 프로세스 5단계, 화면이 좁으면 좌우로 스크롤됩니다">
+        <!-- <div class="process-line"><span class="process-line-fill"></span></div> -->
+
+        <div class="process-step">
+          <div class="process-step-top">
+            <span class="process-step-num">01</span>
+            <span class="process-step-icon" aria-hidden="true">✎</span>
+          </div>
+          <h3>Planning</h3>
+          <p>기획서 내용 분석 및 디자인 분석</p>
+          <div class="process-step-meta">
+            <div class="process-step-row"><span class="process-step-row-label">OUTPUT</span><span class="process-step-output">Sitemap</span></div>
+            <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2–3 days</span></div> -->
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-top">
+            <span class="process-step-num">02</span>
+            <span class="process-step-icon" aria-hidden="true">&lt;/&gt;</span>
+          </div>
+          <h3>Publishing</h3>
+          <p>HTML, CSS, JS 퍼블리싱</p>
+          <div class="process-step-meta">
+            <div class="process-step-row"><span class="process-step-row-label">OUTPUT</span><span class="process-step-output">Semantic HTML</span></div>
+            <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">5–7 days</span></div> -->
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-top">
+            <span class="process-step-num">03</span>
+            <span class="process-step-icon" aria-hidden="true">▦</span>
+          </div>
+          <h3>Responsive</h3>
+          <p>반응형 구현 및 크로스 브라우징</p>
+          <div class="process-step-meta">
+            <div class="process-step-row"><span class="process-step-row-label">OUTPUT</span><span class="process-step-output">Breakpoints</span></div>
+            <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2–3 days</span></div> -->
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-top">
+            <span class="process-step-num">04</span>
+            <span class="process-step-icon" aria-hidden="true">✓</span>
+          </div>
+          <h3>Testing</h3>
+          <p>접근성, 성능 테스트 및 디버깅</p>
+          <div class="process-step-meta">
+            <div class="process-step-row"><span class="process-step-row-label">OUTPUT</span><span class="process-step-output">QA Report</span></div>
+            <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2 days</span></div> -->
+          </div>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-top">
+            <span class="process-step-num">05</span>
+            <span class="process-step-icon" aria-hidden="true">☁</span>
+          </div>
+          <h3>Deploy</h3>
+          <p>배포 및 유지보수</p>
+          <div class="process-step-meta">
+            <div class="process-step-row"><span class="process-step-row-label">OUTPUT</span><span class="process-step-output">Live Site</span></div>
+            <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">1 day</span></div> -->
+          </div>
+        </div>
+      </div>
+
+      <p class="process-scroll-hint" aria-hidden="true"><span class="arrow">←</span>&nbsp;옆으로 스크롤해서 더 보기&nbsp;<span class="arrow">→</span></p>
+    </div>
+  </section>
+
+  <!-- 06 CONTACT -->
+  <section id="contact" aria-label="연락처">
+    <canvas id="particles-contact" class="section-particles" aria-hidden="true"></canvas>
+    <div class="section-inner contact-grid">
+      <div class="content-box">
+        <span class="h2-desc">contact</span>
+        <h2 class="contact-title">Let&#39;s Work<br>Together</h2>
+        <p class="contact-body">새로운 프로젝트나 협업 제안 기다리고 있어요.<br>언제든지 편하게 연락 주세요.</p>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-form-row">
+            <label for="contactName">NAME</label>
+            <input type="text" id="contactName" name="name" placeholder="이름" required>
+          </div>
+          <div class="contact-form-row">
+            <label for="contactEmail">EMAIL</label>
+            <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="contact-form-row">
+            <label for="contactMessage">MESSAGE</label>
+            <textarea id="contactMessage" name="message" rows="4" placeholder="전달하고 싶은 내용을 적어주세요" required></textarea>
+          </div>
+          <button type="submit" class="btn contact-form-submit">SEND MESSAGE <span class="arrow" aria-hidden="true">></span></button>
+          <p class="contact-form-note" id="contactFormNote" role="status">이메일 앱이 열리면 내용을 확인하고 보내주세요.</p>
+        </form>
+      </div>
+
+      <div class="content-box">
+        <div class="contact-status">
+          <span class="contact-status-dot" aria-hidden="true"></span>
+          <div>
+            <div class="contact-status-title">AVAILABLE FOR WORK</div>
+            <div class="contact-status-desc">새 프로젝트 함께할 준비가 되어 있어요.<br>보통 1~2일 안에 답장드려요.</div>
+          </div>
+        </div>
+
+        <div class="contact-focus">
+          <div class="contact-row-label">FOCUS</div>
+          <div class="tag-row">
+            <span class="tag">프로모션 페이지</span>
+            <span class="tag">반응형 웹사이트</span>
+            <span class="tag">이벤트 페이지</span>
+            <span class="tag">웹접근성 프로젝트</span>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-row">
+            <span class="contact-row-icon" aria-hidden="true">⌖</span>
+            <div>
+              <div class="contact-row-label">LOCATION</div>
+              <div class="contact-row-value">Seoul, Korea</div>
+            </div>
+          </div>
+          <div class="contact-row" style="border-bottom:none;">
+            <span class="contact-row-icon" aria-hidden="true">⚭</span>
+            <div>
+              <div class="contact-row-label">LINKS</div>
+              <div class="social-links">
+                <a href="#" aria-label="GitHub 방문">Git</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">© 2026 KANG. Built with HTML, CSS, JavaScript, Fullpage &amp; Swiper.</footer>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>

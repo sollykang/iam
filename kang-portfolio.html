@@ -26,11 +26,16 @@
 <!-- Pretendard: 본문/제목 공용 폰트 (한글+영문 혼용 가독성이 좋아 Space Grotesk/Inter 대신 적용) -->
 <!-- <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" /> -->
 <link rel="stylesheet" href="css/swiper-bundle.min.css">
-<link rel="stylesheet" href="js/slick.1.8.1.min.js">
+<link rel="stylesheet" href="css/slick.min.css">
 <link rel="stylesheet" href="css/slick-theme.min.css">
 <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
+<div id="pageLoader" class="page-loader" role="status" aria-live="polite">
+  <span class="page-loader-spinner" aria-hidden="true"></span>
+  <span class="page-loader-text">LOADING</span>
+</div>
+<!-- e// 페이지가 다 뜨기전 LOADING -->
 <a class="skip-link" href="#main">본문 바로가기</a>
 
 <header class="site-header">
@@ -108,6 +113,7 @@
           <span class="main-cta-note">HTML · CSS · JS · Swiper · Fullpage</span>
         </div>
       </div>
+      <!--e//.content-box-->
 
       <div class="circle-wrap content-box" aria-hidden="true">
         <div class="circle"></div>
@@ -124,13 +130,17 @@
         <span class="circle-tag" data-angle="150"><i></i>Swiper</span>
         <span class="circle-tag" data-angle="210"><i></i>Fullpage.js</span>
       </div>
+      <!--e//.circle-wrap-->
     </div>
+    <!-- e///.section-inner.main-->
+
 
     <div class="scroll-down" aria-hidden="true">
       <span class="scroll-down-mouse"></span>
       SCROLL DOWN
     </div>
   </section>
+  <!-- e//#main-->
 
   <!-- 02 ABOUT -->
   <section id="about" class="section-alt" aria-label="소개">
@@ -168,7 +178,7 @@
           </div>
         </div>
         <div class="about-badge"><span class="strong">10+</span><span>YEARS</span></div>
-      </div>
+      </div><!-- e//.about-media.content-box -->
 
       <div class="content-box">
         <span class="h2-desc">about me</span>
@@ -196,8 +206,11 @@
           </div>
         </div>
       </div>
+      <!-- e//.content-box -->
     </div>
+    <!--e//.section-inner.about-->
   </section>
+  <!--e//#about-->
 
   <!-- 03 SKILLS -->
   <section id="skills" aria-label="기술 스택">
@@ -214,11 +227,14 @@
             <span>always&nbsp;<span class="strong">learning</span></span>
           </div>
         </div>
+        <!-- e//.swiper-nav-group > div -->
         <div class="swiper-nav-group">
           <button class="swiper-nav-btn" id="skillsPrev" aria-label="이전 스킬 보기">←</button>
           <button class="swiper-nav-btn" id="skillsNext" aria-label="다음 스킬 보기">→</button>
         </div>
+        <!-- e//.swiper-nav-group -->
       </div>
+      <!-- e//.skills-head.content-box -->
 
       <div class="swiper skills-swiper content-box">
         <div class="swiper-wrapper">
@@ -231,7 +247,9 @@
               <div class="skill-card-bar"><span style="width:95%;"></span></div>
               <div class="skill-card-pct">95%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -241,7 +259,9 @@
               <div class="skill-card-bar"><span style="width:90%;"></span></div>
               <div class="skill-card-pct">90%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -251,7 +271,9 @@
               <div class="skill-card-bar"><span style="width:90%;"></span></div>
               <div class="skill-card-pct">90%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -261,8 +283,9 @@
               <div class="skill-card-bar"><span style="width:70%;"></span></div>
               <div class="skill-card-pct">70%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
-
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -272,7 +295,9 @@
               <div class="skill-card-bar"><span style="width:70%;"></span></div>
               <div class="skill-card-pct">70%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -282,7 +307,9 @@
               <div class="skill-card-bar"><span style="width:70%;"></span></div>
               <div class="skill-card-pct">70%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -292,7 +319,9 @@
               <div class="skill-card-bar"><span style="width:80%;"></span></div>
               <div class="skill-card-pct">80%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -302,7 +331,9 @@
               <div class="skill-card-bar"><span style="width:90%;"></span></div>
               <div class="skill-card-pct">90%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -312,7 +343,9 @@
               <div class="skill-card-bar"><span style="width:70%;"></span></div>
               <div class="skill-card-pct">70%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -322,7 +355,9 @@
               <div class="skill-card-bar"><span style="width:70%;"></span></div>
               <div class="skill-card-pct">70%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
+          <!-- e//.swiper-slide-->
 
           <div class="swiper-slide">
             <div class="skill-card">
@@ -332,11 +367,14 @@
               <div class="skill-card-bar"><span style="width:50%;"></span></div>
               <div class="skill-card-pct">50%</div>
             </div>
+            <!-- e//.skill-card -->
           </div>
-
+          <!-- e//.swiper-slide-->
         </div>
+        <!-- e//.swiper.skills-swiper.content-box-->
         <div class="swiper-pagination"></div>
       </div>
+      <!-- e//.swiper-wrapper-->
 
       <div class="tools-strip content-box">
         <span class="tools-strip-label">TOOLS &amp; WORKFLOW</span>
@@ -351,8 +389,11 @@
           <span class="tool-chip"><i></i>Jira</span>
         </div>
       </div>
+      <!-- e//.tools-strip.content-box-->
     </div>
+    <!-- e//.section-inner -->
   </section>
+  <!-- e//#skills -->
 
   <!-- 04 PROJECTS -->
   <section id="projects" class="section-alt" aria-label="프로젝트">
@@ -369,26 +410,32 @@
             <button class="swiper-nav-btn" id="projectsNext" aria-label="다음 프로젝트 보기">→</button>
           </div>
         </div>
+        <!-- e//.projects-head-actions-->
       </div>
+      <!-- e//.projects-head.content-box-->
 
       <div class="project-grid content-box">
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <a class="project-card-media" href="https://www.residentevil-survivalunit.com/" target="_blank" rel="noopener noreferrer" aria-label="BIOHAZAD Suvival Unit 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-01"><img src="images/project1-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project1-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project1-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-04"><img src="images/project1-4.jpg" alt=""></div>
+            <a class="project-card-media" href="https://www.residentevil-survivalunit.com/" target="_blank" rel="noopener noreferrer" aria-label="BIOHAZAD Suvival Unit 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-01"><img src="images/project1-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project1-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project1-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-04"><img src="images/project1-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
+            </a>
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev0" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext0" aria-label="다음 이미지">→</button>
             </div>
-          </a>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev0" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext0" aria-label="다음 이미지">→</button>
+            <!-- e//.project-media-nav-->
           </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/BIOHAZAD Suvival Unit</span>
             <h3>BIOHAZAD Suvival Unit</h3>
@@ -397,25 +444,31 @@
              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <a class="project-card-media" href="https://romgoldenage.com/" target="_blank" aria-label="ROM: Golden Age 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-05"><img src="images/project2-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-06"><img src="images/project2-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-07"><img src="images/project2-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-08"><img src="images/project2-4.jpg" alt=""></div>
+            <a class="project-card-media" href="https://romgoldenage.com/" target="_blank" aria-label="ROM: Golden Age 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-05"><img src="images/project2-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-06"><img src="images/project2-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-07"><img src="images/project2-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-08"><img src="images/project2-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
+            </a>
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev1" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext1" aria-label="다음 이미지">→</button>
             </div>
-          </a>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev1" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext1" aria-label="다음 이미지">→</button>
+            <!-- e//.project-media-nav-->
           </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/ROM: Golden Age</span>
             <h3>ROM: Golden Age</h3>
@@ -424,25 +477,31 @@
              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Swiper.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <a class="project-card-media" rel="noopener noreferrer" aria-label="ROM: Remamber Of Majesty Episode IV">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-09"><img src="images/project3-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-10"><img src="images/project3-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-11"><img src="images/project3-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-12"><img src="images/project3-4.jpg" alt=""></div>
+            <a class="project-card-media" rel="noopener noreferrer" aria-label="ROM: Remamber Of Majesty Episode IV">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-09"><img src="images/project3-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-10"><img src="images/project3-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-11"><img src="images/project3-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-12"><img src="images/project3-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
+            </a>
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev2" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext2" aria-label="다음 이미지">→</button>
             </div>
-          </a>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev2" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext2" aria-label="다음 이미지">→</button>
+            <!-- e//.project-media-nav-->
           </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/ROM: Remamber Of Majesty Episode IV</span>
             <h3>ROM: Remamber Of Majesty Episode IV</h3>
@@ -451,26 +510,31 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="FORTNITE 사전예약 프로모션 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-13"><img src="images/project4-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-14"><img src="images/project4-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-15"><img src="images/project4-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-16"><img src="images/project4-4.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="FORTNITE 사전예약 프로모션 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-13"><img src="images/project4-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-14"><img src="images/project4-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-15"><img src="images/project4-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-16"><img src="images/project4-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev3" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext3" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev3" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext3" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/FORTNITE 사전예약 프로모션</span>
             <h3>FORTNITE 사전예약 프로모션</h3>
@@ -479,25 +543,31 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode III 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-17"><img src="images/project5-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-18"><img src="images/project5-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-19"><img src="images/project5-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-20"><img src="images/project5-4.jpg" alt=""></div>
+            <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode III 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-17"><img src="images/project5-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-18"><img src="images/project5-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-19"><img src="images/project5-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-20"><img src="images/project5-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
+            </a>
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev4" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext4" aria-label="다음 이미지">→</button>
             </div>
-          </a>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev4" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext4" aria-label="다음 이미지">→</button>
+            <!-- e//.project-media-nav-->
           </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/ROM: Remamber Of Majesty Episode III</span>
             <h3>ROM: Remamber Of Majesty Episode III</h3>
@@ -506,26 +576,31 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="삼국 블래이드 키우기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-21"><img src="images/project6-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-22"><img src="images/project6-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-23"><img src="images/project6-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-24"><img src="images/project6-4.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="삼국 블래이드 키우기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-21"><img src="images/project6-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-22"><img src="images/project6-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-23"><img src="images/project6-3.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-24"><img src="images/project6-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev5" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext5" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev5" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext5" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/삼국 블래이드 키우기</span>
             <h3>삼국 블래이드 키우기</h3>
@@ -534,25 +609,31 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode II 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-25"><img src="images/project7-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-26"><img src="images/project7-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-27"><img src="images/project7-3.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-28"><img src="images/project7-4.jpg" alt=""></div>
+            <a class="project-card-media" href="#" aria-label="ROM: Remamber Of Majesty Episode II 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                <div class="swiper-slide project-card-media-25"><img src="images/project7-1.jpg" alt=""></div>
+                <div class="swiper-slide project-card-media-26"><img src="images/project7-2.jpg" alt=""></div>
+                <div class="swiper-slide project-card-media-27"><img src="images/project7-3.jpg" alt=""></div>
+                <div class="swiper-slide project-card-media-28"><img src="images/project7-4.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
+            </a>
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev6" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext6" aria-label="다음 이미지">→</button>
             </div>
-          </a>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev6" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext6" aria-label="다음 이미지">→</button>
+            <!-- e//.project-media-nav-->
           </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/ROM: Remamber Of Majesty Episode II</span>
             <h3>ROM: Remamber Of Majesty Episode II</h3>
@@ -561,24 +642,29 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">Swiper.js</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="별이되어라2 시즌 2 프로모션 페이지 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-29"><img src="images/project8-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-30"><img src="images/project8-2.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="별이되어라2 시즌 2 프로모션 페이지 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-29"><img src="images/project8-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-30"><img src="images/project8-2.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev7" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext7" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev7" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext7" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/별이되어라2 시즌 2 프로모션 페이지 바로가기</span>
             <h3>별이되어라2 시즌 2 프로모션 페이지 바로가기</h3>
@@ -587,25 +673,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">적응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="별이되어라 2 프로모션 페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-31"><img src="images/project9-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"></div>
-              <div class="swiper-slide project-card-media-04"></div>
+            <div class="project-card-media" role="img" aria-label="별이되어라 2 프로모션 페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-31"><img src="images/project9-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"></div>
+                  <div class="swiper-slide project-card-media-04"></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev8" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext8" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev8" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext8" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/별이되어라 2 프로모션 페이지</span>
             <h3>별이되어라 2 프로모션 페이지</h3>
@@ -614,24 +705,29 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">적응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="ROM: Remamber Of Majesty 홈페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-29"><img src="images/project10-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-30"><img src="images/project10-2.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="ROM: Remamber Of Majesty 홈페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-29"><img src="images/project10-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-30"><img src="images/project10-2.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev9" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext9" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev9" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext9" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/</span>
             <h3>ROM: Remamber Of Majesty</h3>
@@ -640,25 +736,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">GSAP</span><span class="tag">Fullpage.js</span><span class="tag">반응형</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="SUDDEN ATTACK Promotion 전국 서든자랑 바로가기">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-05"><img src="images/project11-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-06"><img src="images/project11-2.jpg" alt=""></div>
-              <!-- <div class="swiper-slide project-card-media-01"><img src="images/project11-3.jpg" alt=""></div> -->
+            <div class="project-card-media" role="img" aria-label="SUDDEN ATTACK Promotion 전국 서든자랑 바로가기">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-05"><img src="images/project11-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-06"><img src="images/project11-2.jpg" alt=""></div>
+                  <!-- <div class="swiper-slide project-card-media-01"><img src="images/project11-3.jpg" alt=""></div> -->
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev10" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext10" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev10" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext10" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/SUDDEN ATTACK Promotion 전국 서든자랑</span>
             <h3>SUDDEN ATTACK Promotion 전국 서든자랑</h3>
@@ -667,25 +768,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="EGON Promotion 프로모션 사이트">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-06"><img src="images/project12-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-01"><img src="images/project12-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project12-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="EGON Promotion 프로모션 사이트">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-06"><img src="images/project12-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-01"><img src="images/project12-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project12-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev11" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext11" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev11" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext11" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/EGON Promotion</span>
             <h3>EGON Promotion</h3>
@@ -694,25 +800,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="Tapas Promotion Weekly Event 사이트">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-01"><img src="images/project13-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project13-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project13-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="Tapas Promotion Weekly Event 사이트">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-01"><img src="images/project13-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project13-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project13-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev12" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext12" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev12" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext12" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/Tapas Promotion Weekly Event</span>
             <h3>Tapas Promotion Weekly Event</h3>
@@ -721,25 +832,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="Undecember Promotion 사이트">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project14-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project14-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-04"><img src="images/project14-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="Undecember Promotion 사이트">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project14-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project14-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-04"><img src="images/project14-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev13" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext13" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev13" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext13" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/Undecember Promotion</span>
             <h3>Undecember Promotion</h3>
@@ -748,25 +864,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="KINGS RAID Promotion X:The Final">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project15-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project15-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-04"><img src="images/project15-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="KINGS RAID Promotion X:The Final">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project15-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project15-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-04"><img src="images/project15-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev14" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext14" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev14" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext14" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/KINGS RAID Promotion X:The Final</span>
             <h3>KINGS RAID Promotion X:The Final</h3>
@@ -775,25 +896,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="GUARDIAN CHRONICLE 사전예약 프로모션 페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project16-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project16-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-04"><img src="images/project16-2.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="GUARDIAN CHRONICLE 사전예약 프로모션 페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project16-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project16-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-04"><img src="images/project16-2.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev15" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext15" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev15" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext15" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/GUARDIAN CHRONICLE</span>
             <h3>GUARDIAN CHRONICLE 사전예약 프로모션</h3>
@@ -802,25 +928,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="ROYAL CROWN 사전예약 프로모션 사이트">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project17-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-03"><img src="images/project17-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-04"><img src="images/project17-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="ROYAL CROWN 사전예약 프로모션 사이트">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project17-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-03"><img src="images/project17-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-04"><img src="images/project17-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev16" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext16" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev16" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext16" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/ROYAL CROWN 사전예약 프로모션</span>
             <h3>ROYAL CROWN 사전예약 프로모션</h3>
@@ -829,25 +960,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="데미안 전기 사전예약 프로모션 페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-03"></div>
-              <div class="swiper-slide project-card-media-04"></div>
-              <div class="swiper-slide project-card-media-05"></div>
+            <div class="project-card-media" role="img" aria-label="데미안 전기 사전예약 프로모션 페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-03"></div>
+                  <div class="swiper-slide project-card-media-04"></div>
+                  <div class="swiper-slide project-card-media-05"></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev17" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext17" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev17" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext17" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/데미안 전기 사전예약 프로모션 페이지</span>
             <h3>데미안 전기 사전예약 프로모션 페이지</h3>
@@ -856,25 +992,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">Swiper.js</span><span class="tag">Fullpage.js</span><span class="tag">MOBILE</span><span class="tag">크로스브라우징</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="MINI Build Your Drive 홈페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project18-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project18-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project18-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="MINI Build Your Drive 홈페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project18-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project18-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project18-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev18" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext18" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev18" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext18" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/MINI Build Your Drive</span>
             <h3>MINI Build Your Drive</h3>
@@ -883,25 +1024,30 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">반응형</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
 
         <article class="project-card">
           <div class="project-card-media-wrap">
-          <div class="project-card-media" role="img" aria-label="BMW Build Your Driv 홈페이지">
-            <div class="swiper project-media-swiper">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide project-card-media-02"><img src="images/project19-1.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project19-2.jpg" alt=""></div>
-              <div class="swiper-slide project-card-media-02"><img src="images/project19-3.jpg" alt=""></div>
+            <div class="project-card-media" role="img" aria-label="BMW Build Your Driv 홈페이지">
+              <div class="swiper project-media-swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide project-card-media-02"><img src="images/project19-1.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project19-2.jpg" alt=""></div>
+                  <div class="swiper-slide project-card-media-02"><img src="images/project19-3.jpg" alt=""></div>
+                </div>
               </div>
+              <!-- e//.swiper-->
             </div>
-          
+            <!-- e//.project-card-media-->
+            <div class="project-media-nav">
+              <button type="button" class="project-media-prev" id="projectMediaPrev19" aria-label="이전 이미지">←</button>
+              <button type="button" class="project-media-next" id="projectMediaNext19" aria-label="다음 이미지">→</button>
+            </div>
+            <!-- e//.project-media-nav-->
           </div>
-          <div class="project-media-nav">
-            <button type="button" class="project-media-prev" id="projectMediaPrev19" aria-label="이전 이미지">←</button>
-            <button type="button" class="project-media-next" id="projectMediaNext19" aria-label="다음 이미지">→</button>
-          </div>
-          </div>
+          <!-- e//.project-card-media-wrap-->
           <div class="project-card-body">
             <span class="project-card-path">/BMW Build Your Drive</span>
             <h3>BMW Build Your Drive</h3>
@@ -910,10 +1056,15 @@
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JQuery</span><span class="tag">JavaScript</span><span class="tag">반응형</span>
             </div>
           </div>
+          <!-- e//.project-card-body-->
         </article>
+        <!-- e//.project-card-->
       </div>
+      <!-- e//.project-grid.content-box-->
     </div>
+    <!-- e//.section-inner-->
   </section>
+  <!-- e//#projects-->
 
   <!-- 05 PROCESS -->
   <section id="process" aria-label="작업 프로세스">
@@ -932,7 +1083,6 @@
 
       <div class="process-track" tabindex="0" role="group" aria-label="퍼블리싱 프로세스 5단계, 화면이 좁으면 좌우로 스크롤됩니다">
         <!-- <div class="process-line"><span class="process-line-fill"></span></div> -->
-
         <div class="process-step">
           <div class="process-step-top">
             <span class="process-step-num">01</span>
@@ -945,6 +1095,7 @@
             <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2–3 days</span></div> -->
           </div>
         </div>
+        <!-- e//.process-step -->
 
         <div class="process-step">
           <div class="process-step-top">
@@ -958,6 +1109,7 @@
             <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">5–7 days</span></div> -->
           </div>
         </div>
+        <!-- e//.process-step -->
 
         <div class="process-step">
           <div class="process-step-top">
@@ -971,6 +1123,7 @@
             <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2–3 days</span></div> -->
           </div>
         </div>
+        <!-- e//.process-step -->
 
         <div class="process-step">
           <div class="process-step-top">
@@ -984,6 +1137,7 @@
             <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">2 days</span></div> -->
           </div>
         </div>
+        <!-- e//.process-step -->
 
         <div class="process-step">
           <div class="process-step-top">
@@ -997,11 +1151,15 @@
             <!-- <div class="process-step-row"><span class="process-step-row-label">DURATION</span><span class="process-step-duration">1 day</span></div> -->
           </div>
         </div>
+        <!-- e//.process-step -->
       </div>
+      <!-- e//.process-track-->
 
       <p class="process-scroll-hint" aria-hidden="true"><span class="arrow">←</span>&nbsp;옆으로 스크롤해서 더 보기&nbsp;<span class="arrow">→</span></p>
     </div>
+    <!-- e//.section-inner-->
   </section>
+  <!-- e//#process -->
 
   <!-- 06 CONTACT -->
   <section id="contact" aria-label="연락처">
@@ -1069,16 +1227,17 @@
         </div>
       </div>
     </div>
+    <!-- e//.section-inner-->
 
     <footer class="site-footer">© 2026 KANG. Built with HTML, CSS, JavaScript, Fullpage &amp; Swiper.</footer>
+    <!-- e//footer -->
   </section>
+  <!-- e//#process -->
 
 </main>
+<!-- e//main -->
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script> -->
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/gsap.3.12.5.min.js"></script>
 <script src="js/scrolloverflow.min.js"></script>

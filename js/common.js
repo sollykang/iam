@@ -1,5 +1,29 @@
 
   // ============================================================
+  // 0-1. 페이지 로딩 화면
+  //    이미지·폰트·외부 스크립트(Swiper, GSAP, slick 등)까지 전부 다 불러온 뒤에
+  //    (= 브라우저의 "load" 이벤트) 로딩 화면을 지웁니다.
+  //    load 이벤트는 DOMContentLoaded보다 늦게 발생해서, 이미지까지 포함한
+  //    "정말로 다 준비된 시점"을 알 수 있어요.
+  //    네트워크가 느려서 너무 오래 걸리는 경우를 대비해, PAGE_LOADER_MAX_WAIT(ms)가
+  //    지나면 안 끝났어도 강제로 지워지도록 안전장치를 뒀습니다.
+  // ============================================================
+  var PAGE_LOADER_MAX_WAIT = 8000;
+  var pageLoader = document.getElementById('pageLoader');
+
+  function hidePageLoader() {
+    if (!pageLoader) return;
+    document.body.classList.remove('is-loading');
+    pageLoader.classList.add('is-hidden');
+  }
+
+  if (pageLoader) {
+    document.body.classList.add('is-loading'); // 로딩 중에는 스크롤 막기
+    window.addEventListener('load', hidePageLoader);
+    setTimeout(hidePageLoader, PAGE_LOADER_MAX_WAIT); // 안전장치
+  }
+
+  // ============================================================
   // 0. 모션 감소 설정 확인
   //    사용자가 "동작 줄이기(prefers-reduced-motion)"를 켜두었으면 아래 애니메이션들을 최대한 켜지 않습니다.
   // ============================================================
@@ -25,9 +49,10 @@
         slidesPerView: 1.15,
         spaceBetween: 20,
         breakpoints: {
-          640: { slidesPerView: 2, spaceBetween: 20 },
-          1080: { slidesPerView: 3, spaceBetween: 20 },
-          1440: { slidesPerView: 5, spaceBetween: 20 }
+          640: { slidesPerView: 2},
+          876: { slidesPerView: 3},
+          1080: { slidesPerView: 4},
+          1440: { slidesPerView: 5}
         },
         pagination: { el: '.swiper-pagination', clickable: true },
         navigation: { nextEl: '#skillsNext', prevEl: '#skillsPrev' },

@@ -86,6 +86,55 @@ button{
 .skip-link:focus{
   top:16px;
 }
+/* ============================================================
+   페이지 로딩 화면
+   이미지·폰트·Swiper/GSAP/slick 같은 외부 파일까지 전부 다 불러올 때까지
+   이 화면으로 가려둡니다. 다 불러오면 JS가 is-hidden 클래스를 붙여서 사라져요.
+   - 배경색/글자를 바꾸려면 .page-loader, .page-loader-text 값만 수정
+   - 회전 속도를 바꾸려면 .page-loader-spinner의 animation 시간(0.8s)만 수정
+============================================================ */
+body.is-loading{
+  overflow:hidden;
+}
+.page-loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.page-loader.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.page-loader-spinner{
+  width:36px;
+  height:36px;
+  border:3px solid var(--line);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:pageLoaderSpin 0.8s linear infinite;
+}
+@keyframes pageLoaderSpin{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+.page-loader-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  letter-spacing:.12em;
+  color:var(--ink-faint);
+}
 a:focus-visible, button:focus-visible{
   outline:2px solid var(--accent);
   outline-offset:3px;
@@ -1141,6 +1190,52 @@ section{
   display:block;
   overflow:hidden;
 }
+
+/* slick-carousel 기본 동작 CSS (핵심 레이아웃 규칙만 최소로 재작성) */
+.slick-slider{
+  position:relative;
+  display:block;
+  box-sizing:border-box;
+  -webkit-touch-callout:none;
+  user-select:none;
+  touch-action:pan-y;
+}
+.slick-list{
+  position:relative;
+  overflow:hidden;
+  display:block;
+  margin:0;
+  padding:0;
+}
+.slick-list:focus{ outline:none; }
+.slick-list.dragging{ cursor:pointer; cursor:hand; }
+.slick-track{
+  position:relative;
+  top:0;
+  left:0;
+  display:flex;
+}
+.slick-track:before,
+.slick-track:after{
+  display:table;
+  content:'';
+}
+.slick-track:after{ clear:both; }
+.slick-slide{
+  display:none;
+  float:left;
+  height:100%;
+  min-height:1px;
+}
+.slick-slide img{ display:block; }
+.slick-initialized .slick-slide{ display:block; }
+.slick-loading .slick-slide{ visibility:hidden; }
+.slick-vertical .slick-slide{
+  display:block;
+  height:auto;
+  border:1px solid transparent;
+}
+.slick-arrow.slick-hidden{ display:none; }
 /* ============================================================
     RECENTED PROJECT 카드 내부 이미지 슬라이드 (Swiper.js)
     - 넘기기는 버튼(.project-media-prev/.project-media-next)으로만 동작하고,
@@ -1665,7 +1760,10 @@ footer.site-footer{
     "줄바꿈 대신 가로로 스크롤"이 시작되는 화면 너비를 조절할 수 있습니다.
     .process-step의 flex-basis(260px)를 바꾸면 카드 하나의 너비가 조절됩니다.
 ============================================================ */
-@media (max-width:1440){
+@media (max-width:1440px){
+  .circle-wrap {
+    max-width:85%;
+  }
   .project-grid .slick-slide {
     margin:0 20px;
   }

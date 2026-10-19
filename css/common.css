@@ -1958,7 +1958,7 @@ footer.site-footer{
   .about-media {
     width:100%;
     max-width:90%;
-    height:63vh;
+    height:52vh;
   }
   .stat-row{
     gap:10px;
@@ -2006,14 +2006,24 @@ footer.site-footer{
   .process-head-copy {
     font-size: 14px;
   }
-  
+
   .contact-body {
     font-size: 14px;
   }
 }
 
 
-@media (orientation: landscape) and (min-width: 768px) {
+@media (max-width:410px){
+  .project-grid .slick-list {
+    margin:0;
+    width:100%;
+  }
+  .project-grid .slick-slide {
+    width:100% !important;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
   .circle-wrap {
     display: none;
   }

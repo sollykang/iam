@@ -1,5 +1,4 @@
-
-  // ============================================================
+// ============================================================
   // 0-1. 페이지 로딩 화면
   // ============================================================
   var PAGE_LOADER_MAX_WAIT = 8000;
@@ -19,7 +18,7 @@
 
   // ============================================================
   // 0. 모션 감소 설정 확인
-  //    사용자가 "동작 줄이기(prefers-reduced-motion)"를 켜두었으면 아래 애니메이션들을 최대한 켜지 않습니다.
+  //    사용자가 "동작 줄이기(prefers-reduced-motion)"를 켜두었으면 아래 애니메이션들을 최대한 켜지 x.
   // ============================================================
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -524,6 +523,7 @@
   //    - useWheel       : 마우스/트랙패드 휠로도 다음·이전 섹션 이동할지 여부
   //    - useTouch       : 모바일 스와이프로도 다음·이전 섹션 이동할지 여부
   //    - minWheelWidth  : 이 화면 너비 이상에서만 휠 이동을 사용 (0이면 항상 사용)
+  //    - minTouchWidth  : 이 화면 너비 이상에서만 터치 스와이프 이동을 사용 (이보다 좁으면 평소처럼 자유롭게 스크롤)
   //    - minWheelDelta      : 이 값보다 작은 휠 이동은 무시 (오작동 방지)
   //    - minSwipeDistance   : 이 값(px)보다 작은 터치 스와이프는 무시 (오작동 방지)
   // ============================================================
@@ -533,6 +533,7 @@
     useWheel: true,
     useTouch: true,
     minWheelWidth: 1025,
+    minTouchWidth: 1025,
     minWheelDelta: 12,
     minSwipeDistance: 50
   };
@@ -641,6 +642,7 @@
     var swipeDirection = null; // 'vertical' 또는 'horizontal'
 
     window.addEventListener('touchstart', function (e) {
+      if (window.innerWidth < FULLPAGE_OPTIONS.minTouchWidth) return; // 좁은 화면(폰/태블릿)에서는 자유 스크롤
       if (isSectionMoving) return;
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
@@ -648,6 +650,7 @@
     }, { passive: true });
 
     window.addEventListener('touchmove', function (e) {
+      if (window.innerWidth < FULLPAGE_OPTIONS.minTouchWidth) return; // 여기서 막아야 기본 스크롤이 그대로 동작해요
       if (isSectionMoving || e.touches.length === 0) return;
 
       var diffX = e.touches[0].clientX - touchStartX;
@@ -665,6 +668,7 @@
     }, { passive: false });
 
     window.addEventListener('touchend', function (e) {
+      if (window.innerWidth < FULLPAGE_OPTIONS.minTouchWidth) { swipeDirection = null; return; }
       if (isSectionMoving || swipeDirection !== 'vertical') {
         swipeDirection = null;
         return;

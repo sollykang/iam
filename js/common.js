@@ -716,6 +716,14 @@
           speed: 500,
           arrows: false,
           dots: true,
+          // 1024px 미만에서는 CSS로 "1 / 20" 형태로 노출
+          customPaging: function (slider, i) {
+            return '<button type="button">' +
+                    '<span class="page-current">' + (i + 1) + '</span>' +
+                    '<span class="page-sep"> / </span>' +
+                    '<span class="page-total">' + slider.slideCount + '</span>' +
+                  '</button>';
+          },
           responsive: [
             { breakpoint: 1440, settings: { slidesToShow: 3 } },
             { breakpoint: 1080, settings: { slidesToShow: 2 } },

@@ -1904,7 +1904,32 @@ footer.site-footer{
     gap:32px;
   }
 }
-
+@media (max-width:1023px){
+  /* 활성 페이지 하나만 노출 */
+  .project-grid .slick-dots li{
+    display:none;
+  }
+  .project-grid .slick-dots li.slick-active{
+    display:block;
+  }
+  /* 블릿 스타일 초기화 → 텍스트 카운터 */
+  .project-grid .slick-dots li button,
+  .project-grid .slick-dots li.slick-active button{
+    width:auto;
+    height:auto;
+    border-radius:0;
+    background:none;
+    font-size:14px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    pointer-events:none;
+    transition:none;
+  }
+  .project-grid .slick-dots .page-current{
+    color:var(--accent);
+    font-weight:700;
+  }
+}
 @media (max-width:768px){
 
   .project-grid .slick-list {

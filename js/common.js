@@ -268,6 +268,18 @@
     contact: { count: 40, speed: 0.09, connectLines: false, maxLineDistance: 0, moveRandomly: true }
   };
 
+  // 섹션 크기가 바뀔 때마다 fn을 실행합니다.
+  // window resize만으로는 로딩 화면이 사라지면서 세로 스크롤바가 생기는 경우(섹션 너비가 줄어듦)를
+  // 잡지 못해서, 가능하면 ResizeObserver로 섹션 자체의 크기 변화를 감시합니다.
+  function watchSectionSize(section, fn) {
+    if (window.ResizeObserver) {
+      new ResizeObserver(debounce(fn, 100)).observe(section);
+    } else {
+      window.addEventListener('resize', debounce(fn, 200));
+      window.addEventListener('load', fn);
+    }
+  }
+
   function startParticles(canvas, options) {
     var ctx = canvas.getContext('2d');
     var section = canvas.closest('section');
@@ -356,7 +368,7 @@
     }
 
     resizeCanvas();
-    window.addEventListener('resize', debounce(resizeCanvas, 200));
+    watchSectionSize(section, resizeCanvas);
 
     if (window.gsap) {
       gsap.ticker.add(tick);
@@ -432,7 +444,7 @@
       };
 
       resizeRippleCanvas();
-      window.addEventListener('resize', debounce(resizeRippleCanvas, 200));
+      watchSectionSize(rippleSection, resizeRippleCanvas);
 
       if (window.gsap) {
         gsap.ticker.add(drawRings);
@@ -757,34 +769,74 @@
   // ============================================================
 
   // ============================================================
-  // 12. Contact 문의폼
-  //     별도 서버 없이도 동작하도록, 제출하면 입력한 내용을 담아
-  //     이메일 앱(mailto)을 열어줍니다. 받는 주소를 바꾸려면
-  //     CONTACT_FORM_EMAIL 값만 수정하면 됩니다.
+  // 12. Contact 이메일 주소 복사
+  //     버튼의 data-email 값을 클립보드에 복사합니다.
+  //     navigator.clipboard를 쓸 수 없는 환경(http, 구형 브라우저)에서는
+  //     execCommand('copy')로 한 번 더 시도합니다.
   // ============================================================
-  var CONTACT_FORM_EMAIL = 'solly17@naver.com';
+  var emailCopyBtn = document.getElementById('contactEmailCopy');
+  if (emailCopyBtn) {
+    var emailCopyText = emailCopyBtn.querySelector('.contact-mail-copy-text');
+    var emailCopyNote = document.getElementById('contactEmailCopyNote');
+    var emailCopyTimer = null;
 
-  var contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+    var copyFallback = function (text) {
+      var temp = document.createElement('textarea');
+      temp.value = text;
+      temp.setAttribute('readonly', '');
+      temp.style.position = 'fixed';
+      temp.style.top = '-9999px';
+      document.body.appendChild(temp);
+      temp.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(temp);
+      return ok;
+    };
 
-      var name = document.getElementById('contactName').value.trim();
-      var email = document.getElementById('contactEmail').value.trim();
-      var message = document.getElementById('contactMessage').value.trim();
+    var showCopyResult = function (ok) {
+      clearTimeout(emailCopyTimer);
+      if (ok) {
+        emailCopyBtn.classList.add('is-copied');
+        if (emailCopyText) emailCopyText.textContent = '복사됨';
+        if (emailCopyNote) emailCopyNote.textContent = '이메일 주소(' + emailCopyBtn.getAttribute('data-email') + ')를 복사했어요.';
+      } else {
+        if (emailCopyNote) emailCopyNote.textContent = '복사하지 못했어요. 주소를 길게 누르거나 드래그해서 직접 복사해 주세요.';
+      }
+      emailCopyTimer = setTimeout(function () {
+        emailCopyBtn.classList.remove('is-copied');
+        if (emailCopyText) emailCopyText.textContent = '주소 복사';
+        if (emailCopyNote) emailCopyNote.textContent = '';
+      }, 2500);
+    };
 
-      if (!name || !email || !message) return; // required 속성이 있지만 한 번 더 확인
+    emailCopyBtn.addEventListener('click', function () {
+      var email = emailCopyBtn.getAttribute('data-email');
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email)
+          .then(function () { showCopyResult(true); })
+          .catch(function () { showCopyResult(copyFallback(email)); });
+      } else {
+        showCopyResult(copyFallback(email));
+      }
+    });
+  }
 
-      var subject = encodeURIComponent('[포트폴리오 문의] ' + name + '님의 메시지');
-      var body = encodeURIComponent(
-        '이름: ' + name + '\n' +
-        '이메일: ' + email + '\n\n' +
-        message
-      );
+  // ============================================================
+  // 13. Contact 명함 카드 — 줄마다 위에서부터 차례로 나타나기
+  //     stagger 값을 바꾸면 줄 사이 간격(초)을 조절할 수 있어요.
+  // ============================================================
+  var cardSteps = document.querySelectorAll('.contact-card .card-step');
 
-      window.location.href = 'mailto:' + CONTACT_FORM_EMAIL + '?subject=' + subject + '&body=' + body;
-
-      var note = document.getElementById('contactFormNote');
-      if (note) note.classList.add('is-visible');
+  if (cardSteps.length && !reduceMotion && window.gsap && window.ScrollTrigger) {
+    gsap.set(cardSteps, { opacity: 0, y: 14 });
+    gsap.to(cardSteps, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.14,
+      delay: 0.3,
+      scrollTrigger: { trigger: '.contact-card', start: 'top 80%' }
     });
   }

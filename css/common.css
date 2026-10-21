@@ -365,6 +365,11 @@ header.site-header{
 .section-particles{
   position:absolute;
   inset:0;
+  /* canvas는 이미지처럼 width 속성값(px)을 그대로 화면 크기로 써서,
+     inset:0만으로는 섹션 너비에 맞춰지지 않아요. 가로 스크롤 방지를 위해 크기를 고정합니다. */
+  display:block;
+  width:100%;
+  height:100%;
   z-index:-1;
   pointer-events:none;
   mix-blend-mode:difference;
@@ -446,6 +451,9 @@ section{
 /* ===== HOME ===== */
 #main{
   padding-top:120px;
+  /* 궤도 태그·타이핑 코드 같은 장식 요소가 화면 밖으로 삐져나와도 가로 스크롤이 생기지 않도록 */
+  overflow:hidden;
+  overflow:clip;
   --spotlight-x: 50%;
   --spotlight-y: 45%;
 }
@@ -1610,160 +1618,197 @@ section{
   background:var(--dark);
 }
 /* ============================================================
-    문의폼 — 전화번호 대신 이 폼으로 문의를 받습니다.
-    별도 서버 없이, 제출하면 작성한 내용을 이메일(mailto)로 열어줍니다.
-    받는 이메일 주소를 바꾸려면 스크립트의 CONTACT_FORM_EMAIL 값만 수정하세요.
+    이메일 버튼 — "이메일 보내기"(mailto) + "주소 복사"
+    주소를 바꾸려면 index.html의 .contact-mail-send href와
+    #contactEmailCopy의 data-email 값을 함께 수정하세요.
 ============================================================ */
-.contact-form{
+.contact-mail{
   margin-top:38px;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  max-width:420px;
 }
-.contact-form-row{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.contact-form-row label{
-  font-family:'pretendard',monospace;
-  font-size:11px;
-  letter-spacing:.06em;
-  color:rgba(243,241,236,0.5);
-}
-.contact-form-row input,
-.contact-form-row textarea{
-  font-family:'Pretendard',sans-serif;
-  font-size:14px;
-  color:#F3F1EC;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--dark-line);
-  border-radius:10px;
-  padding:12px 14px;
-  resize:none;
-}
-.contact-form-row input::placeholder,
-.contact-form-row textarea::placeholder{
-  color:rgba(243,241,236,0.3);
-}
-.contact-form-row input:focus,
-.contact-form-row textarea:focus{
-  outline:none;
-  border-color:var(--accent);
-}
-.contact-form-submit{
-  align-self:flex-start;
-  margin-top:6px;
-}
-.contact-form-note{
-  margin-top:10px;
-  font-size:12px;
-  color:rgba(243,241,236,0.4);
-  display:none;
-}
-.contact-form-note.is-visible{
-  display:block;
-}
-.contact-cta .btn:hover{
-  background:var(--accent-deep);
-}
-/* ============================================================
-    EMAIL/PHONE 행을 없애서 생긴 빈 공간을 채우는 두 블록
-    - .contact-status : 지금 작업 가능한지, 답장은 보통 언제쯤 오는지 알려주는 상태 카드
-    - .contact-focus  : 어떤 작업을 주로 하는지 태그로 보여줌 (Projects의 .tag 재사용)
-    내용을 바꾸려면 아래 HTML 텍스트만 고치면 됩니다.
-============================================================ */
-.contact-status{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  padding-bottom:26px;
-  margin-bottom:26px;
-  border-bottom:1px solid var(--dark-line);
-}
-.contact-status-dot{
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:#6FCF7C;
-  margin-top:7px;
-  flex-shrink:0;
-  box-shadow:0 0 0 4px rgba(111,207,124,0.16);
-}
-.contact-status-title{
-  font-family:'pretendard',monospace;
-  font-size:12.5px;
-  letter-spacing:.06em;
-  color:#F3F1EC;
-  margin-bottom:6px;
-}
-.contact-status-desc{
-  font-size:14px;
-  color:rgba(243,241,236,0.55);
-  line-height:1.6;
-}
-.contact-focus{
-  padding-bottom:26px;
-  margin-bottom:26px;
-  border-bottom:1px solid var(--dark-line);
-}
-.contact-focus .contact-row-label{
-  margin-bottom:12px;
-}
-.contact-focus .tag-row{
+.contact-mail-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-}
-.contact-focus .tag{
-  color:rgba(243,241,236,0.75);
-  border-color:var(--dark-line);
-}
-.contact-list{
-  display:flex;
-  flex-direction:column;
-  gap:26px;
-}
-.contact-row{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
-  padding-bottom:26px;
-  border-bottom:1px solid var(--dark-line);
-}
-.contact-row:last-of-type{
-  border-bottom:none;
-}
-.contact-row-icon{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:1px solid var(--dark-line);
-  display:flex;
   align-items:center;
-  justify-content:center;
-  flex-shrink:0;
+  gap:12px;
+}
+.contact-mail-send{
+  background:var(--accent);
+  color:var(--dark);
+  font-weight:600;
+}
+.contact-mail-send .arrow{
+  background-color:var(--dark);
+  transform:rotate(-90deg);
+}
+.contact-mail-send:hover{
+  background:var(--accent-soft);
+}
+.contact-mail-send:hover .arrow{
+  background-color:var(--dark);
+}
+.contact-mail-copy{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:17px 24px;
+  border:1px solid var(--dark-line);
+  border-radius:999px;
+  background:transparent;
+  color:#F3F1EC;
+  font-size:13px;
+  letter-spacing:.02em;
+  transition:border-color .2s ease, color .2s ease;
+}
+.contact-mail-copy:hover{
+  border-color:var(--accent);
   color:var(--accent-soft);
 }
-.contact-row-icon img{
-  width:16px;
+.contact-mail-copy.is-copied{
+  border-color:#6FCF7C;
+  color:#6FCF7C;
 }
-.contact-row-label{
-  font-family:'pretendard',monospace;
+.contact-mail-note{
+  min-height:20px;
+  margin-top:12px;
+  font-size:12.5px;
+  color:rgba(243,241,236,0.55);
+}
+
+/* ============================================================
+    명함 카드 — Contact에서 마지막으로 "나"를 정리해서 보여주는 영역
+    어두운 배경 위에 밝은 종이 명함처럼 보이도록 --bg 색을 사용합니다.
+    .card-step이 붙은 줄은 스크롤로 들어오면 위에서부터 차례로 나타납니다(common.js 13번).
+============================================================ */
+.contact-card{
+  position:relative;
+  max-width:520px;
+  margin-left:auto;
+  padding:34px 36px 30px;
+  background:var(--bg);
+  color:var(--ink);
+  border-radius:16px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+.contact-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:6px;
+  background:var(--accent);
+}
+.contact-card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.contact-card-logo{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+}
+.contact-card-logo .dot{
+  color:var(--accent);
+}
+.contact-card-status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  color:var(--sage);
+  background:var(--sage-soft);
+  padding:5px 12px;
+  border-radius:999px;
+}
+.contact-card-status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--sage);
+}
+.contact-card-id{
+  margin-top:30px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--line);
+}
+.contact-card-name{
+  font-size:clamp(30px,2.6vw,40px);
+  font-weight:700;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+}
+.contact-card-role{
+  margin-top:6px;
+  font-size:15px;
+  font-weight:500;
+  color:var(--accent-deep);
+}
+.contact-card-intro{
+  word-break:keep-all;
+  margin-top:14px;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.contact-card-info{
+  margin:0;
+}
+.contact-card-row{
+  display:grid;
+  grid-template-columns:96px 1fr;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+.contact-card-row dt{
   font-size:10.5px;
   letter-spacing:.1em;
-  color:rgba(243,241,236,0.45);
-  margin-bottom:6px;
+  color:var(--ink-faint);
+  padding-top:3px;
 }
-.contact-row-label:last-child {
-  display: inline-block;
-  line-height:44px;
-  font-size: 14px;
-  color:#F3F1EC;
+.contact-card-row dd{
+  margin:0;
+  font-size:14px;
+  line-height:1.6;
+  color:var(--ink);
+  word-break:keep-all;
 }
-.contact-row-value{
-  font-size:16px;
+.contact-card-row dd a{
+  text-decoration:underline;
+  text-decoration-color:var(--accent);
+  text-underline-offset:3px;
+}
+.contact-card-row dd a:hover{
+  color:var(--accent-deep);
+}
+.contact-card-foot{
+  margin-top:18px;
+  font-size:12.5px;
+  color:var(--ink-faint);
+}
+@media (max-width:1280px){
+  #contact{
+    padding-bottom:120px; /* 명함 카드가 하단 footer와 겹치지 않도록 */
+  }
+  .contact-card{
+    margin-left:0;
+  }
+}
+@media (max-width:480px){
+  .contact-card{
+    padding:28px 22px 24px 26px;
+  }
+  .contact-card-row{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+  .contact-mail-actions > *{
+    width:100%;
+    justify-content:center;
+  }
 }
 .social-links{
   display:flex;

@@ -411,7 +411,6 @@ section{
   display:inline-flex;
   align-items:center;
   gap:12px;
-  background:var(--ink);
   color:var(--white);
   padding:16px 26px 16px 28px;
   border-radius:999px;
@@ -421,20 +420,28 @@ section{
   border:none;
   cursor:pointer;
   transition:transform .2s ease, background .2s ease;
+  background:var(--ink);
 }
 .btn .arrow{
   width:26px;
   height:26px;
-  border-radius:50%;
-  background:var(--accent);
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
+  background-color:var(--accent);
+  background-image:url(../images/icon-arrow-down.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:16px 16px;
+  border-radius:50%;
 }
 .btn:hover{
-  transform:translateY(-2px);
+  /* transform:translateY(-2px); */
   background:var(--accent-deep);
+}
+.btn:hover .arrow{
+  background-color:var(--ink);
 }
 /* ===== HOME ===== */
 #main{
@@ -845,6 +852,16 @@ section{
   color:var(--ink-faint);
   letter-spacing:.03em;
 }
+.stat span img{
+  width:15px;
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+.stat span img:hover {
+  width:20px;
+  opacity: 1;
+}
 /* ===== SKILLS ===== */
 /* ============================================================
     SKILLS 배경 워터마크 텍스트 — 옵션 수정 가이드
@@ -983,20 +1000,43 @@ section{
   display:inline-block;
 }
 .swiper-nav-btn{
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:var(--bg);
   display:flex;
   align-items:center;
   justify-content:center;
   transition:all .2s ease;
+  width:46px;
+  height:46px;
+  border-radius:10%;
+  border:1px solid var(--line);
+  /* background-color:var(--bg); */
 }
 .swiper-nav-btn:hover{
-  background:var(--ink);
+  background-color:var(--ink);
   border-color:var(--ink);
   color:#fff;
+  transition: all 0.2s;
+}
+
+.swiper-nav-btn#skillsPrev,
+.swiper-nav-btn#projectsPrev  {
+  background:#f7f5f0 url(../images/icon-arrow-left.svg) no-repeat center;
+  background-size:20px;
+}
+.swiper-nav-btn#skillsPrev:hover,
+.swiper-nav-btn#projectsPrev:hover {
+  background:#1e2023 url(../images/icon-w-arrow-left.svg) no-repeat center;
+  background-size:20px;
+}
+.swiper-nav-btn#skillsNext,
+.swiper-nav-btn#projectsNext {
+  background:#f7f5f0 url(../images/icon-arrow-right.svg) no-repeat center;
+  background-size:20px;
+}
+.swiper-nav-btn#skillsNext:hover,
+.swiper-nav-btn#projectsNext:hover {
+  background:#1e2023 url(../images/icon-w-arrow-right.svg) no-repeat center;
+  background-size:20px;
+
 }
 .skills-swiper{
   padding-bottom:44px;
@@ -1293,9 +1333,9 @@ section{
 }
 .project-media-prev,
 .project-media-next{
-  width:34px;
-  height:34px;
-  border-radius:50%;
+  width:25px;
+  height:25px;
+  border-radius:5%;
   border:none;
   background:rgba(255,255,255,.92);
   display:flex;
@@ -1461,16 +1501,20 @@ section{
 .process-step-icon{
   position:relative;
   display:flex;
-  width:52px;
-  height:52px;
+  width:50px;
+  height:50px;
   align-items:center;
   justify-content:center;
-  font-size:19px;
   color:var(--ink-soft);
   border-radius:14px;
   background:var(--bg);
   border:1px solid var(--line);
   z-index:1;
+}
+
+.process-step-icon img{
+  width:18px;
+  opacity: 0.7;
 }
 .process-step-num{
   font-family:'pretendard',monospace;
@@ -1701,6 +1745,9 @@ section{
   justify-content:center;
   flex-shrink:0;
   color:var(--accent-soft);
+}
+.contact-row-icon img{
+  width:16px;
 }
 .contact-row-label{
   font-family:'pretendard',monospace;

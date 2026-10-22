@@ -4,16 +4,34 @@
   var PAGE_LOADER_MAX_WAIT = 8000;
   var pageLoader = document.getElementById('pageLoader');
 
+  // 로딩 화면이 사라진 뒤에 실행할 함수들을 모아두는 곳
+  // onPageReady(fn) 으로 등록하면, 로딩 화면이 사라지는 순간 실행됩니다. (이미 사라졌으면 바로 실행)
+  var isPageReady = false;
+  var pageReadyCallbacks = [];
+
+  function onPageReady(fn) {
+    if (isPageReady) fn();
+    else pageReadyCallbacks.push(fn);
+  }
+
   function hidePageLoader() {
-    if (!pageLoader) return;
-    document.body.classList.remove('is-loading');
-    pageLoader.classList.add('is-hidden');
+    if (isPageReady) return; // load 이벤트와 안전장치 타이머가 두 번 부르는 것을 방지
+    isPageReady = true;
+    if (pageLoader) {
+      document.body.classList.remove('is-loading');
+      pageLoader.classList.add('is-hidden');
+    }
+    pageReadyCallbacks.forEach(function (fn) { fn(); });
+    pageReadyCallbacks = [];
   }
 
   if (pageLoader) {
     document.body.classList.add('is-loading'); // 로딩 중에는 스크롤 막기
     window.addEventListener('load', hidePageLoader);
     setTimeout(hidePageLoader, PAGE_LOADER_MAX_WAIT); // 안전장치
+  } else {
+    // 로딩 화면이 없으면 스크립트가 다 읽힌 뒤 바로 시작
+    setTimeout(hidePageLoader, 0);
   }
 
   // ============================================================
@@ -21,6 +39,9 @@
   //    사용자가 "동작 줄이기(prefers-reduced-motion)"를 켜두었으면 아래 애니메이션들을 최대한 켜지 x.
   // ============================================================
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 섹션 이동(풀페이지 스크롤) 중인지 여부 — 9번에서 값을 바꾸고, 다른 효과들이 참고합니다.
+  var isSectionMoving = false;
 
   // 여러 곳에서 재사용하는 함수: 짧은 시간 안에 여러 번 실행되는 걸 막아줍니다.
   // (예: 창 크기를 조절할 때 resize 이벤트가 너무 자주 발생하는 것을 방지)
@@ -30,6 +51,57 @@
       clearTimeout(timer);
       timer = setTimeout(fn, delay);
     };
+  }
+
+  // ------------------------------------------------------------
+  // [성능] 섹션이 화면에 보일 때만 매 프레임 반복 실행하는 함수
+  //   파티클·궤도·물결처럼 매 프레임 다시 그리는 효과는 화면 밖에 있어도 계속 돌면
+  //   지금 보고 있는 섹션의 스크롤/애니메이션까지 버벅이게 만들어요.
+  //   그래서 해당 섹션이 화면에 들어왔을 때만 돌리고, 나가면 멈춥니다.
+  // ------------------------------------------------------------
+  function runWhileVisible(section, frameFn) {
+    var running = false;
+    var rafId = null;
+
+    var frameCount = 0;
+
+    function loop() {
+      frameCount++;
+      // [성능] 섹션 이동(스크롤) 중에는 절반 프레임만 그려서 스크롤에 여유를 줍니다.
+      if (!isSectionMoving || frameCount % 2 === 0) frameFn();
+      rafId = requestAnimationFrame(loop);
+    }
+    function start() {
+      if (running) return;
+      running = true;
+      rafId = requestAnimationFrame(loop);
+    }
+    function stop() {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(rafId);
+    }
+
+    if (!window.IntersectionObserver) { start(); return; }
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) start();
+        else stop();
+      });
+    }, { threshold: 0 }).observe(section);
+  }
+
+  // [성능] 화면 밖 섹션에는 .is-offscreen 클래스를 붙여서
+  //   CSS 반복 애니메이션(궤도 트레일, 화살표, 스크롤 마우스 등)을 일시정지합니다. (common.css 참고)
+  if (window.IntersectionObserver) {
+    var offscreenObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+    }, { threshold: 0 });
+    document.querySelectorAll('main > section').forEach(function (section) {
+      offscreenObserver.observe(section);
+    });
   }
 
   // ============================================================
@@ -83,35 +155,149 @@
   }
 
   // ============================================================
-  // 2. 스크롤하면 서서히 나타나는 효과 (class="content-box"가 붙은 요소들)
+  // 2. 섹션 진입 애니메이션 — 메인(#main)을 제외한 섹션
+  //    섹션이 화면에 들어오면
+  //    - .h2-desc : 아래에서 위로 살짝 올라오며 나타남
+  //    - h2       : 줄마다 마스크 안에서 아래 → 위로 스르륵 올라옴 (<br> 기준으로 줄 나눔)
+  //    - 그 외 콘텐츠 : opacity만 0 → 1 로 서서히 나타남
+  //
+  //    [성능] JS(GSAP)가 매 프레임 스타일을 바꾸는 방식 대신,
+  //    JS는 섹션에 .is-intro-in 클래스만 붙이고 실제 움직임은 CSS transition이 담당합니다.
+  //    opacity/transform 전환은 브라우저가 별도 스레드(컴포지터)에서 처리해서
+  //    스크롤 중에도 메인 스레드를 거의 쓰지 않아요. 속도·곡선은 common.css의
+  //    "섹션 진입 애니메이션" 영역에서 조절합니다.
+  //
+  //    SECTION_INTRO_OPTIONS
+  //    - replay        : true면 섹션에 들어올 때마다 다시 재생, false면 처음 한 번만 재생
+  //    - startLine     : 섹션 윗부분이 화면 위에서부터 몇 % 지점에 닿으면 시작할지
+  //    - titleDelay    : h2-desc 다음 h2 첫 줄이 시작되는 시간(초)
+  //    - lineStagger   : h2 줄과 줄 사이 간격(초)
+  //    - fadeDelay     : 제목이 시작되고 몇 초 뒤에 나머지 콘텐츠를 보여줄지
+  //    - stagger       : 여러 요소가 차례로 나타날 때 사이 간격(초)
+  //    - staggerGroups : 묶음 안의 항목을 한 줄씩 차례로 보여줄 영역 { 묶음 선택자: 항목 선택자 }
   // ============================================================
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
+  var SECTION_INTRO_OPTIONS = {
+    replay: true,
+    startLine: 75,
+    titleDelay: 0.1,
+    lineStagger: 0.1,
+    fadeDelay: 0.35,
+    stagger: 0.12,
+    staggerGroups: {
+      '.process-track': '.process-step',
+      '.contact-card': '.card-step'
+    }
+  };
+
+  var TITLE_SELECTOR = '.h2-desc, h2';
+
+  // CSS에서 .content-box를 숨겨두었으므로, 박스 자체는 먼저 보이게 하고
+  // 실제 숨김/등장은 박스 안쪽 요소들에 개별로 적용합니다.
+  document.querySelectorAll('.content-box').forEach(function (item) {
+    item.style.opacity = 1;
+    item.style.transform = 'none';
+  });
+
+  // h2 안의 내용을 <br> 기준으로 줄마다 마스크(span)로 감싸줍니다.
+  function splitTitleLines(title) {
+    if (!title.dataset.introSplit) {
+      title.innerHTML = title.innerHTML.split(/<br\s*\/?>/i).map(function (line) {
+        return '<span class="intro-line"><span class="intro-line-inner">' + line.trim() + '</span></span>';
+      }).join('');
+      title.dataset.introSplit = 'true';
+    }
+    return Array.prototype.slice.call(title.querySelectorAll('.intro-line-inner'));
   }
 
-  var contentBoxItems = document.querySelectorAll('.content-box');
+  // 제목(h2-desc, h2)을 제외한 "나머지 콘텐츠"를 찾습니다.
+  function collectFadeItems(parent, result) {
+    Array.prototype.forEach.call(parent.children, function (child) {
+      if (child.matches(TITLE_SELECTOR)) return;
+      if (child.querySelector(TITLE_SELECTOR)) collectFadeItems(child, result);
+      else result.push(child);
+    });
+    return result;
+  }
 
-  if (!reduceMotion && window.gsap && window.ScrollTrigger) {
-    contentBoxItems.forEach(function (item) {
-      gsap.to(item, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: item, start: 'top 82%' }
+  // staggerGroups에 해당하는 묶음은 안쪽 항목들로 풀어서 한 줄씩 차례로 나타나게 합니다.
+  function expandStaggerGroups(items) {
+    var singles = [];
+    var steps = [];
+    items.forEach(function (item) {
+      var groupSteps = null;
+      Object.keys(SECTION_INTRO_OPTIONS.staggerGroups).forEach(function (groupSelector) {
+        if (groupSteps) return;
+        var groupEl = item.matches(groupSelector) ? item : item.querySelector(groupSelector);
+        if (groupEl) groupSteps = groupEl.querySelectorAll(SECTION_INTRO_OPTIONS.staggerGroups[groupSelector]);
       });
+      if (groupSteps && groupSteps.length) steps = steps.concat(Array.prototype.slice.call(groupSteps));
+      else singles.push(item);
     });
-  } else {
-    // GSAP이 없거나 모션을 줄이고 싶어하는 사용자는 애니메이션 없이 바로 다 보여줍니다.
-    contentBoxItems.forEach(function (item) {
-      item.style.opacity = 1;
-      item.style.transform = 'none';
+    return { singles: singles, steps: steps };
+  }
+
+  // 요소에 역할 클래스와 시작 지연 시간(transition-delay)을 붙입니다.
+  function markIntro(elements, className, startDelay, gap) {
+    elements.forEach(function (el, i) {
+      el.classList.add(className);
+      el.style.transitionDelay = (startDelay + i * gap).toFixed(2) + 's';
     });
   }
+
+  function setupSectionIntro(section) {
+    var inner = section.querySelector('.section-inner');
+    if (!inner) return;
+
+    var titleLines = [];
+    inner.querySelectorAll('h2').forEach(function (h2) {
+      titleLines = titleLines.concat(splitTitleLines(h2));
+    });
+    var fade = expandStaggerGroups(collectFadeItems(inner, []));
+
+    markIntro(Array.prototype.slice.call(inner.querySelectorAll('.h2-desc')), 'intro-desc', 0, 0);
+    markIntro(titleLines, 'intro-title', SECTION_INTRO_OPTIONS.titleDelay, SECTION_INTRO_OPTIONS.lineStagger);
+    markIntro(fade.singles, 'intro-fade', SECTION_INTRO_OPTIONS.fadeDelay, SECTION_INTRO_OPTIONS.stagger);
+    markIntro(fade.steps, 'intro-step', SECTION_INTRO_OPTIONS.fadeDelay + 0.15, SECTION_INTRO_OPTIONS.stagger);
+
+    // 이 클래스가 붙은 섹션만 처음에 숨김 상태가 됩니다. (JS가 동작할 때만 숨김)
+    section.classList.add('intro-ready');
+
+    // ① 섹션 윗부분이 startLine에 닿으면 재생
+    var playObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        section.classList.add('is-intro-in');
+        if (!SECTION_INTRO_OPTIONS.replay) playObserver.disconnect();
+      });
+    }, { rootMargin: '0px 0px -' + (100 - SECTION_INTRO_OPTIONS.startLine) + '% 0px', threshold: 0 });
+
+    // ② replay일 때: 섹션이 화면에서 완전히 사라지면 전환 없이 즉시 처음 상태로 되돌림
+    if (SECTION_INTRO_OPTIONS.replay) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting || !section.classList.contains('is-intro-in')) return;
+          section.classList.add('is-intro-reset');   // transition 끄기
+          section.classList.remove('is-intro-in');
+          void section.offsetWidth;                  // 숨김 상태를 바로 적용
+          section.classList.remove('is-intro-reset');
+        });
+      }, { threshold: 0 }).observe(section);
+    }
+
+    // 로딩 화면이 사라진 뒤부터 감시를 시작해야 첫 화면 섹션의 모션이 가려지지 않아요.
+    onPageReady(function () {
+      playObserver.observe(section);
+    });
+  }
+
+  if (!reduceMotion && window.IntersectionObserver) {
+    document.querySelectorAll('main > section:not(#main)').forEach(setupSectionIntro);
+  }
+  // 동작 줄이기를 켠 사용자는 위 처리를 건너뛰므로 모든 콘텐츠가 바로 보입니다.
 
   // ============================================================
   // 3. 메인 화면 오빗(원형 궤도) — 기술 태그가 바깥 라인을 따라 돕니다
-  //    CIRCLE_OPTIONS 값만 바꾸면 궤도 크기, 도는 속도를 조절할 수 있어요.
+  //    CIRCLE_OPTIONS 값만 바꾸면 궤도 크기, 도는 속도를 조절할 수 있어요. (실제 회전은 CSS가 담당)
   //    - radiusRatio    : 1.0이면 가장 바깥 원(.circle)에 정확히 맞춰짐
   //    - speedPerFrame  : 한 프레임마다 도는 각도 (숫자가 클수록 빠르게 돎)
   // ============================================================
@@ -123,37 +309,29 @@
   var circleBox = document.querySelector('.circle-wrap');
   var circleTags = document.querySelectorAll('.circle-tag');
 
-  function updateCircleTagPositions(angle) {
-    var box = circleBox.getBoundingClientRect();
-    var centerX = box.width / 2;
-    var centerY = box.height / 2;
-    var radius = (Math.min(box.width, box.height) / 2) * CIRCLE_OPTIONS.radiusRatio;
+  // [성능] 매 프레임 JS로 좌표를 계산하던 방식 대신,
+  //   태그들을 .circle-orbit 상자에 담아 상자 자체를 CSS 애니메이션으로 돌립니다.
+  //   (글자는 반대로 돌려서 항상 똑바로 보이게 함)
+  //   브라우저가 별도 스레드에서 처리하므로 스크롤과 다른 애니메이션에 영향을 주지 않아요.
+  //   구조: .circle-orbit > .circle-tag-pos(--a: 시작 각도) > .circle-tag
+  if (circleBox && circleTags.length > 0) {
+    var orbitEl = document.createElement('div');
+    orbitEl.className = 'circle-orbit';
 
     circleTags.forEach(function (tag) {
-      var startAngle = parseFloat(tag.dataset.angle) || 0;
-      var currentAngle = (startAngle + angle) * (Math.PI / 180);
-      var x = centerX + radius * Math.cos(currentAngle);
-      var y = centerY + radius * Math.sin(currentAngle);
-      tag.style.left = x + 'px';
-      tag.style.top = y + 'px';
+      var pos = document.createElement('div');
+      pos.className = 'circle-tag-pos';
+      pos.style.setProperty('--a', (parseFloat(tag.dataset.angle) || 0) + 'deg');
+      pos.appendChild(tag);
+      orbitEl.appendChild(pos);
     });
-  }
+    circleBox.appendChild(orbitEl);
 
-  if (circleBox && circleTags.length > 0) {
-    var circleAngle = 0;
-
-    updateCircleTagPositions(circleAngle);
-    window.addEventListener('resize', debounce(function () {
-      updateCircleTagPositions(circleAngle);
-    }, 200));
-
-    if (!reduceMotion && window.gsap) {
-      gsap.ticker.add(function () {
-        circleAngle = (circleAngle + CIRCLE_OPTIONS.speedPerFrame) % 360;
-        updateCircleTagPositions(circleAngle);
-      });
-    }
-    // reduceMotion인 경우 회전 없이 처음 위치에 고정된 상태로만 보여줍니다.
+    // 옵션 값을 CSS 변수로 넘겨줍니다.
+    // speedPerFrame(프레임당 각도) → 한 바퀴 도는 시간(초)으로 변환 (60fps 기준)
+    circleBox.style.setProperty('--orbit-radius', (CIRCLE_OPTIONS.radiusRatio * 50) + '%');
+    circleBox.style.setProperty('--orbit-duration', (360 / (CIRCLE_OPTIONS.speedPerFrame * 60)).toFixed(1) + 's');
+    // reduceMotion인 경우 common.css의 동작 줄이기 규칙 때문에 회전 없이 처음 위치에 고정됩니다.
   }
 
   // ============================================================
@@ -187,12 +365,27 @@
     var mainSection = document.getElementById('main');
     if (!mainSection) return;
 
+    // [성능] mousemove는 1초에 수십~수백 번 발생하므로,
+    //   좌표만 저장해두고 화면에는 프레임당 한 번만 반영합니다.
+    //   CSS 변수도 섹션 전체가 아니라 실제로 쓰는 두 요소에만 넣어서 다시 계산하는 범위를 줄였어요.
+    var spotlightTargets = mainSection.querySelectorAll('.main-spotlight, .main-grid');
+    var pointerX = 0;
+    var pointerY = 0;
+    var spotlightFrame = null;
+
+    function applySpotlight() {
+      spotlightFrame = null;
+      spotlightTargets.forEach(function (el) {
+        el.style.setProperty('--spotlight-x', pointerX + 'px');
+        el.style.setProperty('--spotlight-y', pointerY + 'px');
+      });
+    }
+
     mainSection.addEventListener('mousemove', function (e) {
       var box = mainSection.getBoundingClientRect();
-      var x = e.clientX - box.left;
-      var y = e.clientY - box.top;
-      mainSection.style.setProperty('--spotlight-x', x + 'px');
-      mainSection.style.setProperty('--spotlight-y', y + 'px');
+      pointerX = e.clientX - box.left;
+      pointerY = e.clientY - box.top;
+      if (!spotlightFrame) spotlightFrame = requestAnimationFrame(applySpotlight);
     });
   })();
 
@@ -217,7 +410,14 @@
     var charIndex = 0;
     var isDeleting = false;
 
+    var typingSection = document.getElementById('main');
+
     function tick() {
+      // [성능] 메인이 화면 밖에 있으면 글자를 바꾸지 않고 잠시 뒤 다시 확인만 합니다.
+      if (typingSection && typingSection.classList.contains('is-offscreen')) {
+        setTimeout(tick, 500);
+        return;
+      }
       var currentLine = CODE_LINES[lineIndex];
 
       if (!isDeleting) {
@@ -341,15 +541,18 @@
       }
 
       if (options.connectLines) {
+        var maxLineDistanceSq = options.maxLineDistance * options.maxLineDistance;
         ctx.strokeStyle = '#ffffff';
         ctx.lineWidth = 1;
         for (var i = 0; i < dots.length; i++) {
           for (var j = i + 1; j < dots.length; j++) {
             var dx = dots[i].x - dots[j].x;
             var dy = dots[i].y - dots[j].y;
-            var distance = Math.sqrt(dx * dx + dy * dy);
+            var distanceSq = dx * dx + dy * dy;
 
-            if (distance < options.maxLineDistance) {
+            // [성능] 먼저 제곱값으로 걸러서, 선을 그릴 점들만 제곱근을 계산합니다.
+            if (distanceSq < maxLineDistanceSq) {
+              var distance = Math.sqrt(distanceSq);
               ctx.globalAlpha = (1 - distance / options.maxLineDistance) * 0.3;
               ctx.beginPath();
               ctx.moveTo(dots[i].x, dots[i].y);
@@ -370,13 +573,8 @@
     resizeCanvas();
     watchSectionSize(section, resizeCanvas);
 
-    if (window.gsap) {
-      gsap.ticker.add(tick);
-    } else {
-      // GSAP을 못 불러왔을 때를 대비한 기본 애니메이션 반복
-      function loop() { tick(); requestAnimationFrame(loop); }
-      loop();
-    }
+    // [성능] 섹션이 화면에 보일 때만 그립니다.
+    runWhileVisible(section, tick);
   }
 
   if (reduceMotion) {
@@ -446,44 +644,9 @@
       resizeRippleCanvas();
       watchSectionSize(rippleSection, resizeRippleCanvas);
 
-      if (window.gsap) {
-        gsap.ticker.add(drawRings);
-      } else {
-        (function loop() { drawRings(); requestAnimationFrame(loop); })();
-      }
+      // [성능] 섹션이 화면에 보일 때만 그립니다.
+      runWhileVisible(rippleSection, drawRings);
     }
-  }
-
-  // ============================================================
-  // 6. Publishing Process — 카드가 순서대로 나타나기 + 진행선 채우기
-  // ============================================================
-  var processSteps = document.querySelectorAll('.process-step');
-  var progressLine = document.querySelector('.process-line-fill');
-
-  if (!reduceMotion && window.gsap && window.ScrollTrigger) {
-    gsap.set(processSteps, { opacity: 0, y: 24 });
-    gsap.to(processSteps, {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-      ease: 'power2.out',
-      stagger: 0.12,
-      scrollTrigger: { trigger: '.process-track', start: 'top 78%' }
-    });
-
-    if (progressLine) {
-      gsap.fromTo(progressLine, { scaleX: 0 }, {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: { trigger: '.process-track', start: 'top 75%', end: 'bottom 55%', scrub: 0.6 }
-      });
-    }
-  } else {
-    processSteps.forEach(function (step) {
-      step.style.opacity = 1;
-      step.style.transform = 'none';
-    });
-    if (progressLine) progressLine.style.transform = 'scaleX(1)';
   }
 
   // ============================================================
@@ -531,7 +694,9 @@
   //
   //    FULLPAGE_OPTIONS 값만 바꾸면 아래 항목들을 조절할 수 있음.
   //    - anchors        : 섹션 id를 순서대로 나열한 목록 (GNB·사이드 내비가 그대로 사용)
-  //    - scrollingSpeed : 한 섹션 이동 후 다음 입력을 받기까지 기다리는 시간(ms)
+  //    - scrollingSpeed : 한 섹션을 이동하는 데 걸리는 시간(ms) — 이동이 끝나야 다음 입력을 받음
+  //    - wheelQuietTime : 섹션 이동 뒤, 휠 입력이 이 시간(ms)만큼 멈춰야 다음 이동을 받음
+  //                       (트랙패드의 관성 스크롤 때문에 두 칸씩 넘어가거나 덜컥거리는 것을 방지)
   //    - useWheel       : 마우스/트랙패드 휠로도 다음·이전 섹션 이동할지 여부
   //    - useTouch       : 모바일 스와이프로도 다음·이전 섹션 이동할지 여부
   //    - minWheelWidth  : 이 화면 너비 이상에서만 휠 이동을 사용 (0이면 항상 사용)
@@ -541,13 +706,14 @@
   // ============================================================
   var FULLPAGE_OPTIONS = {
     anchors: ['main', 'about', 'skills', 'projects', 'process', 'contact'],
-    scrollingSpeed: 900,
+    scrollingSpeed: 800,
     useWheel: true,
     useTouch: true,
     minWheelWidth: 1025,
     minTouchWidth: 1025,
     minWheelDelta: 12,
-    minSwipeDistance: 50
+    minSwipeDistance: 50,
+    wheelQuietTime: 180
   };
 
   // anchors 목록에 있는 id로 실제 섹션 요소를 찾아둡니다.
@@ -557,17 +723,49 @@
     if (el) fullpageSections.push(el);
   });
 
-  var isSectionMoving = false;
 
   // 목록의 index번째 섹션으로 이동하는 함수
   // GNB 클릭, 사이드 내비 클릭, 휠 스크롤, 터치 스와이프가 전부 이 함수를 사용합니다.
+  // [성능] 브라우저 기본 smooth 스크롤은 브라우저마다 속도가 달라서 잠금 시간과 어긋나고,
+  //   그 틈에 다음 입력이 끼어들어 덜컥거렸어요. 그래서 이동 시간을 직접 정해서 움직이고,
+  //   실제 이동이 끝나는 순간에 잠금을 풉니다.
+  var scrollFrameId = null;
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
   function goToSection(index) {
     if (index < 0 || index >= fullpageSections.length) return; // 범위 밖이면 아무것도 하지 않음
+
+    var root = document.documentElement;
+    var startY = window.scrollY;
+    var targetY = fullpageSections[index].offsetTop;
+    var distance = targetY - startY;
+
+    cancelAnimationFrame(scrollFrameId);
+    if (reduceMotion || Math.abs(distance) < 2) {
+      window.scrollTo(0, targetY);
+      return;
+    }
+
     isSectionMoving = true;
-    fullpageSections[index].scrollIntoView({ behavior: 'smooth' });
-    setTimeout(function () {
-      isSectionMoving = false;
-    }, FULLPAGE_OPTIONS.scrollingSpeed);
+    root.style.scrollBehavior = 'auto'; // CSS의 scroll-behavior:smooth가 매 프레임 이동을 방해하지 않도록 잠시 끔
+    var startTime = null;
+
+    function step(now) {
+      if (startTime === null) startTime = now;
+      var progress = Math.min((now - startTime) / FULLPAGE_OPTIONS.scrollingSpeed, 1);
+      window.scrollTo(0, startY + distance * easeInOutCubic(progress));
+
+      if (progress < 1) {
+        scrollFrameId = requestAnimationFrame(step);
+      } else {
+        root.style.scrollBehavior = '';
+        isSectionMoving = false;
+      }
+    }
+    scrollFrameId = requestAnimationFrame(step);
   }
 
   // 지금 화면 가운데에 어떤 섹션이 보이고 있는지 찾는 함수
@@ -630,19 +828,36 @@
 
   // ---- 9-3. 마우스/트랙패드 휠로 섹션 이동 (PC) ----
   if (!reduceMotion && FULLPAGE_OPTIONS.useWheel) {
+    var lastWheelTime = 0;
+    var waitWheelQuiet = false; // true면 "휠이 잠깐 멈출 때까지" 새 이동을 받지 않음
+
     window.addEventListener('wheel', function (e) {
       if (window.innerWidth < FULLPAGE_OPTIONS.minWheelWidth) return;
-      if (Math.abs(e.deltaY) < FULLPAGE_OPTIONS.minWheelDelta) return;
-      if (isSectionMoving) { e.preventDefault(); return; }
+      if (e.ctrlKey) return;                                  // 트랙패드 확대/축소 제스처는 건드리지 않음
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;    // 가로 스크롤(캐러셀 등)은 그대로 둠
+
+      var now = performance.now();
+      var gap = now - lastWheelTime;
+      lastWheelTime = now;
 
       var current = getCurrentSectionIndex();
       var next = e.deltaY > 0 ? current + 1 : current - 1;
 
       // 이동할 섹션이 없으면(맨 위/맨 아래) 그냥 자연 스크롤에 맡깁니다.
       // 이렇게 해야 마지막 섹션 아래에 있는 footer까지 스크롤할 수 있어요.
-      if (next < 0 || next >= fullpageSections.length) return;
+      if (!isSectionMoving && (next < 0 || next >= fullpageSections.length)) return;
 
+      // [성능] 여기부터는 작은 휠 값도 기본 스크롤을 막습니다.
+      //   예전에는 작은 값이 그대로 통과해서 화면이 살짝 밀렸다가 섹션 이동이 시작되는
+      //   "덜컥" 하는 느낌이 생겼어요.
       e.preventDefault();
+
+      if (isSectionMoving) return;
+      if (waitWheelQuiet && gap < FULLPAGE_OPTIONS.wheelQuietTime) return; // 관성 스크롤 꼬리는 무시
+      waitWheelQuiet = false;
+      if (Math.abs(e.deltaY) < FULLPAGE_OPTIONS.minWheelDelta) return;
+
+      waitWheelQuiet = true;
       goToSection(next);
     }, { passive: false });
   }
@@ -819,24 +1034,5 @@
       } else {
         showCopyResult(copyFallback(email));
       }
-    });
-  }
-
-  // ============================================================
-  // 13. Contact 명함 카드 — 줄마다 위에서부터 차례로 나타나기
-  //     stagger 값을 바꾸면 줄 사이 간격(초)을 조절할 수 있어요.
-  // ============================================================
-  var cardSteps = document.querySelectorAll('.contact-card .card-step');
-
-  if (cardSteps.length && !reduceMotion && window.gsap && window.ScrollTrigger) {
-    gsap.set(cardSteps, { opacity: 0, y: 14 });
-    gsap.to(cardSteps, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      ease: 'power2.out',
-      stagger: 0.14,
-      delay: 0.3,
-      scrollTrigger: { trigger: '.contact-card', start: 'top 80%' }
     });
   }

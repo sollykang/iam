@@ -147,6 +147,13 @@ a:focus-visible, button:focus-visible{
   clip:rect(0 0 0 0);
   white-space:nowrap;
 }
+/* [성능] 화면 밖 섹션의 반복 CSS 애니메이션은 일시정지 (common.js가 .is-offscreen을 붙임) */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after{
+  animation-play-state:paused !important;
+}
 @media (prefers-reduced-motion: reduce){
   *{
     animation-duration:0.01ms !important;
@@ -428,6 +435,7 @@ section{
   background:var(--ink);
 }
 .btn .arrow{
+  position:relative;
   width:26px;
   height:26px;
   display:flex;
@@ -435,11 +443,15 @@ section{
   justify-content:center;
   flex-shrink:0;
   background-color:var(--accent);
-  background-image:url(../images/icon-arrow-down.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:16px 16px;
   border-radius:50%;
+  overflow:hidden; /* 화살표가 동그라미 밖으로 빠져나갈 때 잘리도록 */
+}
+/* 화살표 아이콘은 ::before에 두고 transform으로만 움직입니다. (GPU에서 처리되어 가벼움) */
+.btn .arrow::before{
+  content:"";
+  width:16px;
+  height:16px;
+  background:url(../images/icon-arrow-down.svg) center / 16px 16px no-repeat;
 }
 .btn:hover{
   /* transform:translateY(-2px); */
@@ -447,6 +459,33 @@ section{
 }
 .btn:hover .arrow{
   background-color:var(--ink);
+}
+/* ============================================================
+    화살표 애니메이션 — 동그라미 안에서 화살표가 빠져나갔다가 반대편에서 다시 들어옵니다.
+    (.arrow는 크기 26px, 아이콘 16px → 가운데 위치는 5px)
+    - arrowPassDown : 아래로 빠져나가고 위에서 다시 들어옴
+    - .contact-mail-send .arrow는 -90deg 회전되어 있어서
+      같은 키프레임이 화면에서는 "오른쪽으로 빠져나가고 왼쪽에서 들어오는" 모션이 됩니다.
+============================================================ */
+@keyframes arrowPassDown{
+  0%{
+    transform:translateY(0);
+    animation-timing-function:cubic-bezier(.55,0,.75,.2);
+  }
+  40%{
+    transform:translateY(22px);
+  }
+  40.01%{
+    transform:translateY(-22px);
+    animation-timing-function:cubic-bezier(.2,.7,.3,1);
+  }
+  80%, 100%{
+    transform:translateY(0);
+  }
+}
+/* 메인 VIEW MY WORKS — 계속 반복 (2.4s 중 마지막 20%는 쉬는 구간) */
+.main-cta .btn .arrow::before{
+  animation:arrowPassDown 2.4s infinite;
 }
 /* ===== HOME ===== */
 #main{
@@ -630,18 +669,43 @@ section{
   margin-top:6px;
   opacity:.85;
 }
+/* 궤도 회전 — common.js 3번이 태그를 .circle-orbit > .circle-tag-pos 로 감싸고
+   --orbit-radius(궤도 반지름), --orbit-duration(한 바퀴 시간)을 넣어줍니다.
+   상자째 CSS로 돌리기 때문에 매 프레임 JS 계산이 필요 없어요. */
+.circle-orbit{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  animation:orbitSpin var(--orbit-duration, 50s) linear infinite;
+}
+.circle-tag-pos{
+  position:absolute;
+  inset:0;
+  transform:rotate(var(--a, 0deg)); /* 태그마다 시작 각도 */
+}
 .circle-tag{
   position:absolute;
-  top:0;
-  left:0;
+  top:50%;
+  left:calc(50% + var(--orbit-radius, 48.5%));
+  translate:-50% -50%;
   display:flex;
   align-items:center;
   gap:8px;
   font-family:'pretendard',monospace;
   font-size:12px;
   color:var(--ink-soft);
-  transform:translate(-50%,-50%);
-  will-change:left, top;
+  white-space:nowrap;
+  pointer-events:auto;
+  transform:rotate(calc(var(--a, 0deg) * -1)); /* 애니메이션이 없을 때(동작 줄이기)도 글자가 똑바로 */
+  /* 바깥 상자가 도는 만큼 반대로 돌려서 글자가 항상 똑바로 보이게 */
+  animation:orbitCounterSpin var(--orbit-duration, 50s) linear infinite;
+}
+@keyframes orbitSpin{
+  to{ transform:rotate(360deg); }
+}
+@keyframes orbitCounterSpin{
+  from{ transform:rotate(calc(var(--a, 0deg) * -1)); }
+  to{ transform:rotate(calc(var(--a, 0deg) * -1 - 360deg)); }
 }
 .circle-tag i{
   width:6px;
@@ -1586,8 +1650,8 @@ section{
 }
 .contact-grid{
   display:grid;
-  grid-template-columns:1.1fr 0.9fr;
-  gap:80px;
+  grid-template-columns:0.8fr 1.2fr;
+  gap:100px;
   align-items:center;
 }
 #contact .h2-desc{
@@ -1643,8 +1707,13 @@ section{
 .contact-mail-send:hover{
   background:var(--accent-soft);
 }
-.contact-mail-send:hover .arrow{
+.contact-mail-send:hover .arrow,
+.contact-mail-send:focus-visible .arrow{
   background-color:var(--dark);
+}
+.contact-mail-send:hover .arrow::before,
+.contact-mail-send:focus-visible .arrow::before{
+  animation:arrowPassDown .75s 1;
 }
 .contact-mail-copy{
   display:inline-flex;
@@ -1681,7 +1750,7 @@ section{
 ============================================================ */
 .contact-card{
   position:relative;
-  max-width:520px;
+  max-width:80%;
   margin-left:auto;
   padding:34px 36px 30px;
   background:var(--bg);
@@ -1841,6 +1910,66 @@ footer.site-footer{
   font-size:11.5px;
   color:rgba(243,241,236,0.4);
   border-top:1px solid var(--dark-line);
+}
+/* ============================================================
+    섹션 진입 애니메이션 (메인 제외) — common.js 2번이 클래스만 붙이고, 움직임은 CSS가 담당
+    - .intro-ready  : 처음 숨김 상태 (JS가 동작할 때만 붙음)
+    - .is-intro-in  : 섹션이 화면에 들어오면 붙음 → 나타남
+    - .is-intro-reset : 다시 숨길 때 전환 없이 즉시 숨김
+    시작 순서(지연 시간)는 JS가 요소마다 transition-delay로 넣어줍니다.
+    시간·곡선을 바꾸려면 아래 transition 값만 수정하세요.
+============================================================ */
+/* h2 줄 마스크 — padding/margin-bottom은 g, y 같은 글자 아랫부분이 잘리지 않게 하는 여유 공간 */
+.intro-line{
+  display:block;
+  overflow:hidden;
+  padding-bottom:.12em;
+  margin-bottom:-.12em;
+}
+.intro-line-inner{
+  display:block;
+}
+/* 숨김 상태 */
+.intro-ready .intro-desc{
+  opacity:0;
+  transform:translateY(20px);
+}
+.intro-ready .intro-title{
+  transform:translateY(110%);
+}
+.intro-ready .intro-fade,
+.intro-ready .intro-step{
+  opacity:0;
+}
+/* 등장 전환 */
+.intro-ready .intro-desc{
+  transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
+.intro-ready .intro-title{
+  transition:transform .9s cubic-bezier(.22,1,.36,1);
+}
+.intro-ready .intro-fade{
+  transition:opacity .8s ease-out;
+}
+.intro-ready .intro-step{
+  transition:opacity .6s ease-out;
+}
+/* 나타난 상태 */
+.intro-ready.is-intro-in .intro-desc,
+.intro-ready.is-intro-in .intro-title{
+  transform:none;
+  opacity:1;
+}
+.intro-ready.is-intro-in .intro-fade,
+.intro-ready.is-intro-in .intro-step{
+  opacity:1;
+}
+/* 다시 숨길 때는 전환 없이 즉시 */
+.intro-ready.is-intro-reset .intro-desc,
+.intro-ready.is-intro-reset .intro-title,
+.intro-ready.is-intro-reset .intro-fade,
+.intro-ready.is-intro-reset .intro-step{
+  transition:none !important;
 }
 /* Reveal animation base state (enhanced by GSAP JS) */
 .content-box{

@@ -1014,9 +1014,9 @@
       if (ok) {
         emailCopyBtn.classList.add('is-copied');
         if (emailCopyText) emailCopyText.textContent = '복사됨';
-        if (emailCopyNote) emailCopyNote.textContent = '이메일 주소(' + emailCopyBtn.getAttribute('data-email') + ')를 복사했어요.';
+        if (emailCopyNote) emailCopyNote.textContent = '이메일 주소를 복사했어요.'; //(' + emailCopyBtn.getAttribute('data-email') + ')
       } else {
-        if (emailCopyNote) emailCopyNote.textContent = '복사하지 못했어요. 주소를 길게 누르거나 드래그해서 직접 복사해 주세요.';
+        if (emailCopyNote) emailCopyNote.textContent = '이메일 주소를 복사하지 못했어요. 주소를 길게 누르거나 드래그해서 직접 복사해 주세요.';
       }
       emailCopyTimer = setTimeout(function () {
         emailCopyBtn.classList.remove('is-copied');

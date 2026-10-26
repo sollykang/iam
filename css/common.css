@@ -1858,14 +1858,7 @@ section{
   font-size:12.5px;
   color:var(--ink-faint);
 }
-@media (max-width:1280px){
-  #contact{
-    padding-bottom:120px; /* 명함 카드가 하단 footer와 겹치지 않도록 */
-  }
-  .contact-card{
-    margin-left:0;
-  }
-}
+
 @media (max-width:480px){
   .contact-card{
     padding:28px 22px 24px 26px;
@@ -1994,12 +1987,30 @@ footer.site-footer{
     margin:0 20px;
   }
 }
+
+/* ===== Responsive ===== */
 @media (max-width:1280px){
 
+  #main{
+    padding:100px 50px;
+  }
+  .main{
+    grid-template-columns:1fr;
+    gap:70px;
+  }
+  .circle-wrap{
+    max-width:420px;
+  }
+  .about{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
   .about-media{
     max-width:500px;
   }
-
+  .project-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
   .process-track{
     display:flex;
     overflow-x:auto;
@@ -2019,30 +2030,18 @@ footer.site-footer{
   .process-scroll-hint{
     display:flex;
   }
-}
-/* ===== Responsive ===== */
-@media (max-width:1280px){
 
-  #main{
-    padding:100px 50px;
+  #contact{
+    padding-bottom:120px; /* 명함 카드가 하단 footer와 겹치지 않도록 */
   }
-  .main{
-    grid-template-columns:1fr;
-    gap:70px;
-  }
-  .circle-wrap{
-    max-width:420px;
-  }
-  .about{
-    grid-template-columns:1fr;
-    gap:60px;
+  .contact-card{
+    margin-left:0;
+    width:100%;
+    max-width:100%;
   }
   .contact-grid{
     grid-template-columns:1fr;
-    gap:56px;
-  }
-  .project-grid{
-    grid-template-columns:repeat(2,1fr);
+    gap:50px;
   }
 }
 @media (max-width:1024px){
@@ -2055,8 +2054,7 @@ footer.site-footer{
   header.site-header{
     left:0;
     padding:20px 28px;
-    /* 폰에서 고정 헤더가 스크롤할 때 출렁이는 것을 줄이기 위한 설정
-       (blur 효과를 끄고 별도 레이어로 분리해서 고정시킴) */
+    /* 폰에서 고정 헤더가 스크롤할 때 출렁이는 것을 줄이기 위한 설정 (blur 효과를 끄고 별도 레이어로 분리해서 고정시킴) */
     background:rgba(247,245,240,0.96);
     -webkit-backdrop-filter:none;
     backdrop-filter:none;

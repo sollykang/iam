@@ -75,7 +75,7 @@ button{
   top:-60px;
   background:var(--ink);
   color:var(--white);
-  padding:12px 20px;
+  padding:15px 20px;
   border-radius:8px;
   z-index:1000;
   font-family:'pretendard',monospace;
@@ -104,7 +104,7 @@ body.is-loading{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:18px;
+  gap:20px;
   transition:opacity .5s ease, visibility .5s ease;
 }
 .page-loader.is-hidden{
@@ -206,7 +206,7 @@ a:focus-visible, button:focus-visible{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
+  gap:10px;
   padding:30px 0;
   color:var(--ink-faint);
   font-family:'pretendard',monospace;
@@ -245,7 +245,7 @@ a:focus-visible, button:focus-visible{
   transform:rotate(180deg);
   position:absolute;
   left:100%;
-  margin-left:14px;
+  margin-left:15px;
   top:50%;
   translate:0 -50%;
   font-size:10px;
@@ -271,7 +271,7 @@ header.site-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:26px 56px;
+  padding:30px 60px;
   background:rgba(247,245,240,0.82);
   backdrop-filter:blur(10px);
   border-bottom:1px solid transparent;
@@ -299,7 +299,7 @@ header.site-header{
   letter-spacing:.04em;
   color:var(--ink-soft);
   position:relative;
-  padding-bottom:4px;
+  padding-bottom:5px;
   background:none;
   border:none;
   cursor:pointer;
@@ -331,7 +331,7 @@ header.site-header{
   font-size:12px;
   color:var(--ink-soft);
   border:1px solid var(--line);
-  padding:9px 16px;
+  padding:10px 20px;
   border-radius:999px;
 }
 .menu-toggle{
@@ -389,7 +389,7 @@ header.site-header{
 section{
   min-height:100vh;
   width:100%;
-  padding:0 56px;
+  padding:0 60px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -413,7 +413,7 @@ section{
   font-size:13px;
   letter-spacing:.06em;
   color:var(--accent-deep);
-  margin-bottom:22px;
+  margin-bottom:25px;
 }
 .h2-desc::before{
   content:"//";
@@ -422,9 +422,9 @@ section{
 .btn{
   display:inline-flex;
   align-items:center;
-  gap:12px;
+  gap:15px;
   color:var(--white);
-  padding:16px 26px 16px 28px;
+  padding:20px 30px 20px 30px;
   border-radius:999px;
   font-family:'pretendard',monospace;
   font-size:13px;
@@ -549,7 +549,7 @@ section{
 }
 .main-typing-cursor{
   display:inline-block;
-  margin-left:2px;
+  margin-left:5px;
   animation:mainTypingBlink 1s steps(1) infinite;
 }
 @keyframes mainTypingBlink{
@@ -570,8 +570,8 @@ section{
 .main-h2-desc-wrap{
   display:flex;
   align-items:center;
-  gap:12px;
-  margin-bottom:26px;
+  gap:15px;
+  margin-bottom:30px;
 }
 .main h1{
   font-size:clamp(56px, 6.6vw, 108px);
@@ -583,17 +583,17 @@ section{
   color:var(--accent);
 }
 .main-sub{
-  margin-top:28px;
+  margin-top:30px;
   font-size:19px;
   color:var(--ink-soft);
   max-width:460px;
   line-height:1.7;
 }
 .main-cta{
-  margin-top:44px;
+  margin-top:45px;
   display:flex;
   align-items:center;
-  gap:24px;
+  gap:25px;
 }
 .main-cta-note{
   font-family:'pretendard',monospace;
@@ -666,7 +666,7 @@ section{
   font-family:'pretendard',monospace;
   font-size:10.5px;
   letter-spacing:.12em;
-  margin-top:6px;
+  margin-top:10px;
   opacity:.85;
 }
 /* 궤도 회전 — common.js 3번이 태그를 .circle-orbit > .circle-tag-pos 로 감싸고
@@ -690,7 +690,7 @@ section{
   translate:-50% -50%;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   font-family:'pretendard',monospace;
   font-size:12px;
   color:var(--ink-soft);
@@ -797,14 +797,14 @@ section{
 .code-window-bar{
   display:flex;
   align-items:center;
-  gap:14px;
-  padding:16px 18px;
+  gap:15px;
+  padding:20px 20px;
   background:var(--code-bar);
   flex-shrink:0;
 }
 .code-window-dots{
   display:flex;
-  gap:7px;
+  gap:10px;
 }
 .code-window-dot{
   width:10px;
@@ -822,7 +822,7 @@ section{
 }
 .code-window-body{
   flex:1;
-  padding:22px 20px;
+  padding:25px 20px;
   overflow:hidden;
 }
 .code-lines{
@@ -838,7 +838,7 @@ section{
 .code-lines li{
   counter-increment:codeline;
   position:relative;
-  padding-left:28px;
+  padding-left:30px;
   white-space:pre-wrap;
 }
 .code-lines li::before{
@@ -876,7 +876,7 @@ section{
   font-family:'pretendard',monospace;
   font-size:7.5px;
   letter-spacing:.08em;
-  margin-top:2px;
+  margin-top:5px;
   color:var(--accent-soft);
 }
 .about h2{
@@ -886,7 +886,7 @@ section{
   max-width:520px;
 }
 .about-body{
-  margin-top:24px;
+  margin-top:25px;
   color:var(--ink-soft);
   font-size:16.5px;
   max-width:480px;
@@ -894,8 +894,8 @@ section{
 }
 .stat-row{
   display:flex;
-  gap:52px;
-  margin-top:52px;
+  gap:55px;
+  margin-top:55px;
   flex-wrap:wrap;
 }
 .stat{
@@ -980,7 +980,7 @@ section{
   grid-template-columns:1fr auto;
   column-gap:60px;
   align-items:end;
-  margin-bottom:44px;
+  margin-bottom:45px;
 }
 .skills-head h2{
   font-size:clamp(34px,3vw,46px);
@@ -997,8 +997,8 @@ section{
 .skills-head-meta{
   grid-column:1/2;
   display:flex;
-  gap:28px;
-  margin-top:26px;
+  gap:30px;
+  margin-top:30px;
   flex-wrap:wrap;
 }
 .skills-head-meta span{
@@ -1007,7 +1007,7 @@ section{
   color:var(--ink-faint);
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 }
 .skills-head-meta span .strong{
   color:var(--accent-deep);
@@ -1024,15 +1024,15 @@ section{
 .swiper-nav-group{
   display:flex;
   gap:10px;
-  margin-bottom:6px;
+  margin-bottom:10px;
 }
 .tools-strip{
   margin-top:40px;
-  padding-top:36px;
+  padding-top:40px;
   border-top:1px solid var(--line);
   display:flex;
   align-items:center;
-  gap:22px;
+  gap:25px;
   flex-wrap:wrap;
 }
 .tools-strip-label{
@@ -1050,13 +1050,13 @@ section{
 .tool-chip{
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   font-family:'pretendard',monospace;
   font-size:12.5px;
   color:var(--ink-soft);
   background:var(--white);
   border:1px solid var(--line);
-  padding:8px 14px;
+  padding:10px 15px;
   border-radius:999px;
   transition:border-color .2s ease, color .2s ease;
 }
@@ -1111,13 +1111,13 @@ section{
 
 }
 .skills-swiper{
-  padding-bottom:44px;
+  padding-bottom:30px;
 }
 .skill-card{
   background:var(--white);
   border:1px solid var(--line);
   border-radius:var(--radius);
-  padding:30px 26px;
+  padding:30px 30px;
   height:100%;
 }
 .skill-card-tag{
@@ -1126,7 +1126,7 @@ section{
   font-size:12px;
   color:var(--sage);
   background:var(--sage-soft);
-  padding:4px 10px;
+  padding:5px 10px;
   border-radius:6px;
   margin-bottom:20px;
 }
@@ -1149,12 +1149,12 @@ section{
   font-weight:700;
   font-size:15px;
   color:#fff;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 .skill-card h3{
   font-size:18px;
   font-weight:600;
-  margin-bottom:16px;
+  margin-bottom:20px;
 }
 .skill-card-bar{
   height:4px;
@@ -1176,7 +1176,7 @@ section{
 }
 .swiper-pagination{
   position:static !important;
-  margin-top:8px;
+  margin-top:10px;
 }
 .swiper-pagination-bullet{
   background:var(--ink-faint) !important;
@@ -1191,7 +1191,7 @@ section{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  margin-bottom:48px;
+  margin-bottom:50px;
 }
 .projects-head h2{
   font-size:clamp(34px,3vw,46px);
@@ -1224,7 +1224,7 @@ section{
   --project-gap: 20px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:46px;
+  gap:50px;
 }
 /* Slick slider overrides once initialized */
 .project-grid.slick-initialized{
@@ -1253,8 +1253,8 @@ section{
   position:static;
   display:flex !important;
   justify-content:center;
-  gap:9px;
-  margin-top:36px;
+  gap:10px;
+  margin-top:40px;
   padding:0;
 }
 .project-grid .slick-dots li{
@@ -1401,7 +1401,7 @@ section{
   bottom:14px;
   z-index:2;
   display:flex;
-  gap:8px;
+  gap:10px;
 }
 .project-media-prev,
 .project-media-next{
@@ -1426,7 +1426,7 @@ section{
   color:#fff;
 }
 .project-card-body{
-  padding:26px 26px 30px;
+  padding:30px 30px 30px;
 }
 .project-card-path{
   font-family:'pretendard',monospace;
@@ -1444,12 +1444,12 @@ section{
   color:var(--ink-soft);
   font-size:14.5px;
   line-height:1.65;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 .tag-row{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
 }
 .tag{
   font-family:'pretendard',monospace;
@@ -1461,7 +1461,7 @@ section{
 }
 /* ===== PROCESS ===== */
 .process-head{
-  margin-bottom:56px;
+  margin-bottom:60px;
   max-width:640px;
 }
 .process-head h2{
@@ -1476,8 +1476,8 @@ section{
 }
 .process-head-meta{
   display:flex;
-  gap:28px;
-  margin-top:26px;
+  gap:30px;
+  margin-top:30px;
   flex-wrap:wrap;
 }
 .process-head-meta span{
@@ -1486,7 +1486,7 @@ section{
   color:var(--ink-faint);
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
 }
 .process-head-meta span .strong{
   color:var(--accent-deep);
@@ -1505,21 +1505,21 @@ section{
   grid-template-columns:repeat(5,1fr);
   gap:0;
   position:relative;
-  padding-top:6px;
+  padding-top:10px;
 }
 /* ============================================================
     스텝 연결선 위치 — 아이콘 중심에 정확히 맞추는 계산식
-    .process-step{padding:0 14px} + .process-step-icon{width:52px} 이므로
-    아이콘 중심은 각 칸의 왼쪽에서 14px + 26px = 40px 지점입니다.
+    .process-step{padding:0 15px} + .process-step-icon{width:50px} 이므로
+    아이콘 중심은 각 칸의 왼쪽에서 15px + 25px = 40px 지점입니다.
     - left: 40px           → 첫 번째 아이콘 중심
     - right: calc(20% - 40px) → 마지막(5번째) 아이콘 중심까지
     스텝 개수를 바꾸면 20%(=100%÷스텝 수)도 함께 바꿔주세요.
-    top: 32px = process-track의 padding-top(6px) + 아이콘 높이의 절반(26px)
+    top: 36px = process-track의 padding-top(10px) + 아이콘 높이의 절반(26px)
 ============================================================ */
 .process-line{
   position:absolute;
   overflow:hidden;
-  top:32px;
+  top:36px;
   left:40px;
   right:calc(20% - 40px);
   height:2px;
@@ -1540,8 +1540,8 @@ section{
   display:none;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  margin-top:18px;
+  gap:10px;
+  margin-top:20px;
   font-family:'pretendard',monospace;
   font-size:11.5px;
   color:var(--ink-faint);
@@ -1602,26 +1602,26 @@ section{
 .process-step h3{
   font-size:16.5px;
   font-weight:600;
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 .process-step p{
   font-size:13px;
   color:var(--ink-soft);
   line-height:1.6;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 .process-step-meta{
   display:flex;
   flex-direction:column;
-  gap:8px;
-  padding-top:16px;
+  gap:10px;
+  padding-top:20px;
   border-top:1px dashed var(--line);
 }
 .process-step-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:8px;
+  gap:10px;
 }
 .process-step-row-label{
   font-family:'pretendard',monospace;
@@ -1634,7 +1634,7 @@ section{
   font-size:11px;
   color:var(--sage);
   background:var(--sage-soft);
-  padding:3px 9px;
+  padding:5px 10px;
   border-radius:999px;
 }
 .process-step-duration{
@@ -1646,7 +1646,7 @@ section{
 #contact{
   background:var(--dark);
   color:#F3F1EC;
-  padding-bottom:64px;
+  padding-bottom:65px;
 }
 .contact-grid{
   display:grid;
@@ -1666,14 +1666,14 @@ section{
   line-height:1.12;
 }
 .contact-body{
-  margin-top:22px;
+  margin-top:25px;
   color:rgba(243,241,236,0.65);
   max-width:420px;
   font-size:16px;
   line-height:1.8;
 }
 .contact-cta{
-  margin-top:38px;
+  margin-top:40px;
 }
 .contact-cta .btn{
   background:var(--accent);
@@ -1687,13 +1687,13 @@ section{
     #contactEmailCopy의 data-email 값을 함께 수정하세요.
 ============================================================ */
 .contact-mail{
-  margin-top:38px;
+  margin-top:40px;
 }
 .contact-mail-actions{
   display:flex;
   flex-wrap:wrap;
   align-items:center;
-  gap:12px;
+  gap:15px;
 }
 .contact-mail-send{
   background:var(--accent);
@@ -1718,8 +1718,8 @@ section{
 .contact-mail-copy{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:17px 24px;
+  gap:10px;
+  padding:20px 25px;
   border:1px solid var(--dark-line);
   border-radius:999px;
   background:transparent;
@@ -1738,7 +1738,7 @@ section{
 }
 .contact-mail-note{
   min-height:20px;
-  margin-top:12px;
+  margin-top:15px;
   font-size:12.5px;
   color:rgba(243,241,236,0.55);
 }
@@ -1752,7 +1752,7 @@ section{
   position:relative;
   max-width:80%;
   margin-left:auto;
-  padding:34px 36px 30px;
+  padding:35px 40px 30px;
   background:var(--bg);
   color:var(--ink);
   border-radius:16px;
@@ -1772,7 +1772,7 @@ section{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:15px;
 }
 .contact-card-logo{
   font-size:20px;
@@ -1785,11 +1785,11 @@ section{
 .contact-card-status{
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   font-size:12px;
   color:var(--sage);
   background:var(--sage-soft);
-  padding:5px 12px;
+  padding:5px 15px;
   border-radius:999px;
 }
 .contact-card-status-dot{
@@ -1800,7 +1800,7 @@ section{
 }
 .contact-card-id{
   margin-top:30px;
-  padding-bottom:24px;
+  padding-bottom:25px;
   border-bottom:1px solid var(--line);
 }
 .contact-card-name{
@@ -1810,14 +1810,14 @@ section{
   letter-spacing:-0.02em;
 }
 .contact-card-role{
-  margin-top:6px;
+  margin-top:10px;
   font-size:15px;
   font-weight:500;
   color:var(--accent-deep);
 }
 .contact-card-intro{
   word-break:keep-all;
-  margin-top:14px;
+  margin-top:15px;
   font-size:14px;
   line-height:1.7;
   color:var(--ink-soft);
@@ -1828,15 +1828,15 @@ section{
 .contact-card-row{
   display:grid;
   grid-template-columns:96px 1fr;
-  gap:12px;
-  padding:12px 0;
+  gap:15px;
+  padding:15px 0;
   border-bottom:1px solid var(--line);
 }
 .contact-card-row dt{
   font-size:10.5px;
   letter-spacing:.1em;
   color:var(--ink-faint);
-  padding-top:3px;
+  padding-top:5px;
 }
 .contact-card-row dd{
   margin:0;
@@ -1854,28 +1854,14 @@ section{
   color:var(--accent-deep);
 }
 .contact-card-foot{
-  margin-top:18px;
+  margin-top:20px;
   font-size:12.5px;
   color:var(--ink-faint);
 }
-
-@media (max-width:480px){
-  .contact-card{
-    padding:28px 22px 24px 26px;
-  }
-  .contact-card-row{
-    grid-template-columns:1fr;
-    gap:2px;
-  }
-  .contact-mail-actions > *{
-    width:100%;
-    justify-content:center;
-  }
-}
 .social-links{
   display:flex;
-  gap:12px;
-  margin-top:8px;
+  gap:15px;
+  margin-top:10px;
 }
 .social-links a{
   width:40px;
@@ -1898,7 +1884,7 @@ footer.site-footer{
   bottom:0;
   background:transparent;
   text-align:center;
-  padding:22px 0;
+  padding:25px 0;
   font-family:'pretendard',monospace;
   font-size:11.5px;
   color:rgba(243,241,236,0.4);
@@ -1986,11 +1972,17 @@ footer.site-footer{
   .project-grid .slick-slide {
     margin:0 20px;
   }
+
+  .contact-card {
+    max-width: 100%;
+  }
 }
 
 /* ===== Responsive ===== */
 @media (max-width:1280px){
-
+  .h2-desc {
+    margin:25px 0;
+  }
   #main{
     padding:100px 50px;
   }
@@ -2017,7 +2009,7 @@ footer.site-footer{
     overflow-y:hidden;
     gap:0;
     scroll-snap-type:x proximity;
-    padding-bottom:14px;
+    padding-bottom:15px;
     -webkit-overflow-scrolling:touch;
   }
   .process-step{
@@ -2053,7 +2045,7 @@ footer.site-footer{
   }
   header.site-header{
     left:0;
-    padding:20px 28px;
+    padding:20px 30px;
     /* 폰에서 고정 헤더가 스크롤할 때 출렁이는 것을 줄이기 위한 설정 (blur 효과를 끄고 별도 레이어로 분리해서 고정시킴) */
     background:rgba(247,245,240,0.96);
     -webkit-backdrop-filter:none;
@@ -2066,17 +2058,17 @@ footer.site-footer{
   .gnb.is-open{
     display:flex;
     flex-direction:column;
-    gap:4px;
+    gap:5px;
     position:absolute;
     top:100%;
     left:0;
     right:0;
     background:var(--bg);
-    padding:20px 28px 26px;
+    padding:20px 30px 30px;
     border-bottom:1px solid var(--line);
   }
   .gnb.is-open .btn-gnb-nav{
-    padding:12px 0;
+    padding:15px 0;
     text-align:left;
   }
   .header-cta{
@@ -2120,7 +2112,7 @@ footer.site-footer{
     padding:25px 0;
   }
   .stat-row{
-    gap:32px;
+    gap:35px;
   }
 }
 @media (max-width:1023px){
@@ -2156,7 +2148,7 @@ footer.site-footer{
     margin:0 auto;
   }
   .project-grid .slick-slide {
-    margin:0 22px;
+    margin:0 25px;
   }
   .circle-wrap {
     display: none;
@@ -2169,7 +2161,7 @@ footer.site-footer{
   .main-cta{
     flex-direction:column;
     align-items:flex-start;
-    gap:14px;
+    gap:15px;
   }
   #main{
     padding:80px 35px
@@ -2231,7 +2223,7 @@ footer.site-footer{
   .projects-head{
     flex-direction:column;
     align-items:flex-start;
-    gap:18px;
+    gap:20px;
   }
   .swiper-nav-group {
     justify-content: right;
@@ -2244,7 +2236,7 @@ footer.site-footer{
   .tools-strip{
     flex-direction:column;
     align-items:flex-start;
-    gap:14px;
+    gap:15px;
   }
 
   .process-head-copy {
@@ -2256,6 +2248,20 @@ footer.site-footer{
   }
 }
 
+
+@media (max-width:480px){
+  .contact-card{
+    padding:30px 25px 25px 30px;
+  }
+  .contact-card-row{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+  .contact-mail-actions > *{
+    width:100%;
+    justify-content:center;
+  }
+}
 
 @media (max-width:410px){
   .project-grid .slick-list {
